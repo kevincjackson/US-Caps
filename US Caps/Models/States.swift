@@ -11,7 +11,6 @@ import Foundation
 struct States {
     
     static var all = [
-    
         State(name: "Alabama", capital: "Montgomery", region: .southeast),
         State(name: "Alaska", capital: "Juneau", region: .west),
         State(name: "Arizona", capital: "Phoenix", region: .west),
@@ -21,7 +20,7 @@ struct States {
         State(name: "Connecticut", capital: "Hartford", region: .northeast),
         State(name: "Delaware", capital: "Dover", region: .northeast),
         State(name: "Florida", capital: "Tallahassee", region: .southeast),
-        State(name: "Georgia", capital: "Atanta", region: .southeast),
+        State(name: "Georgia", capital: "Atlanta", region: .southeast),
         State(name: "Hawaii", capital: "Honolulu", region: .west),
         State(name: "Idaho", capital: "Boise", region: .west),
         State(name: "Illinois", capital: "Springfield", region: .midwest),
@@ -35,7 +34,7 @@ struct States {
         State(name: "Massachusetts", capital: "Boston", region: .northeast),
         State(name: "Michigan", capital: "Lansing", region: .midwest),
         State(name: "Minnesota", capital: "Saint Paul", region: .midwest),
-        State(name: "Mississippi", capital: "Jackon", region: .southeast),
+        State(name: "Mississippi", capital: "Jackson", region: .southeast),
         State(name: "Missouri", capital: "Jefferson City", region: .midwest),
         State(name: "Montana", capital: "Helena", region: .west),
         State(name: "Nebraska", capital: "Lincoln", region: .midwest),
@@ -62,7 +61,6 @@ struct States {
         State(name: "West Virginia", capital: "Charleston", region: .southeast),
         State(name: "Wisconsin", capital: "Madison", region: .midwest),
         State(name: "Wyoming", capital: "Cheyenne", region: .west)
-
     ]
     
 }
