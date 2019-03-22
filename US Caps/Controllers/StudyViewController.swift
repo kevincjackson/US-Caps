@@ -10,13 +10,7 @@ import UIKit
 
 class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    enum answerState {
-        case hide
-        case hint
-        case show
-    }
-    
-    var showState: answerState = .show
+    var listAnswerDisplayState: AnswerDisplayState = .show
     var studyData = States.all
     var studyDataReverse = false
     
@@ -29,20 +23,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
     }
 
-    // MARK: - Functions
-    func cycleShow() {
-        switch showState {
-        case .show:
-            showState = .hide
-            showButton.title = "Hint"
-        case .hint:
-            showState = .show
-            showButton.title = "Hide"
-        case .hide:
-            showState = .hint
-            showButton.title = "Show"
-        }
-    }
     
     // MARK: - Actions
     @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
@@ -103,8 +83,28 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     @IBAction func showButtonPressed(_ sender: UIBarButtonItem) {
+
+        switch listAnswerDisplayState {
+        case .show:
+            listAnswerDisplayState = .hide
+            for item in studyData {
+                item.answerDisplayState = .hide
+            }
+            showButton.title = "Hint"
+        case .hint:
+            listAnswerDisplayState = .show
+            for item in studyData {
+                item.answerDisplayState = .show
+            }
+            showButton.title = "Hide"
+        case .hide:
+            listAnswerDisplayState = .hint
+            for item in studyData {
+                item.answerDisplayState = .hint
+            }
+            showButton.title = "Show"
+        }
         
-        cycleShow()
         self.studyTableView.reloadData()
     }
     
@@ -127,7 +127,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.textLabel?.text = labelText
         
         // Set detail
-        switch showState {
+        switch studyData[indexPath.row].answerDisplayState {
         case .hide:
             cell.detailTextLabel?.text = ""
         case .hint:
@@ -140,7 +140,20 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cycleShow()
+        
+        let item = studyData[indexPath.row]
+        let currentState = item.answerDisplayState
+        
+        switch currentState {
+        case .hide:
+            item.answerDisplayState = .hint
+        case .hint:
+            item.answerDisplayState = .show
+        case .show:
+            item.answerDisplayState = .hide
+        }
+        
         self.studyTableView.reloadData()
     }
+        
 }

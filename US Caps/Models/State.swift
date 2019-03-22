@@ -8,12 +8,13 @@
 
 import Foundation
 
-struct State {
+class State {
     
     var name = ""
     var capital = ""
     var region: StateFilter
     var missed = false
+    var answerDisplayState: AnswerDisplayState = .show
     
     init(name: String, capital: String, region: StateFilter) {
         self.name = name
