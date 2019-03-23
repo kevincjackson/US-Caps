@@ -9,62 +9,122 @@
 import UIKit
 
 class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    // MARK: - View Outlets
+    @IBOutlet weak var dataFilterButton: UIBarButtonItem!
+    @IBOutlet weak var displayModeButton: UIBarButtonItem!
+    @IBOutlet weak var itemModeButton: UIBarButtonItem!
+    @IBOutlet weak var itemView: UIView!
+    @IBOutlet weak var itemQuestionLabel: UILabel!
+    @IBOutlet weak var itemAnswerLabel: UILabel!
+    @IBOutlet weak var listView: UITableView!
+    @IBOutlet weak var progressLabel: UILabel!
     
-    var listAnswerDisplayState: AnswerDisplayState = .show
+
+    // MARK: - Controllers
+    var studyCurrentIndex = 0 {
+        didSet {
+            updateProgressBar()
+            updateItemView()
+        }
+    }
     var studyData = States.all
-    var studyDataReverse = false
+    var studyDataFilter: StateFilter = .all {
+        didSet {
+            if studyDataFilter == .all {
+                studyData = States.all
+            } else {
+                studyData = States.all.filter { $0.region == studyDataFilter }
+            }
+            studyCurrentIndex = 0
+        }
+    }
+    var studyDataReverse = false {
+        didSet {
+            updateItemView()
+        }
+    }
+    var studyDisplayMode: DisplayState.Mode = .show {
+        didSet {
+            updateItemView()
+        }
+    }
+    var studyItemMode = false
     
-    @IBOutlet weak var studyTableView: UITableView!
-    @IBOutlet weak var showButton: UIBarButtonItem!
-    @IBOutlet weak var filterButton: UIBarButtonItem!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        listView.isHidden = false
+        itemView.isHidden = true
+        itemModeButton.title = "Item"
     }
-
+    
+    
+    // MARK: - Functions
+    func updateItemView() {
+        let item = studyData[studyCurrentIndex]
+        let capital = studyData[studyCurrentIndex].capital
+        let state =  studyData[studyCurrentIndex].name
+        
+        // Account for data reverse
+        let question = studyDataReverse ? capital : state
+        var answer = studyDataReverse ? state : capital
+        
+        // Modify answer depending on hint mode
+        answer = DisplayState.describe(answer: answer, mode: item.displayState)
+        
+        // Update view
+        itemQuestionLabel.text = question
+        itemAnswerLabel.text = answer
+    }
+    
+    func updateProgressBar() {
+        progressLabel.text = "\(studyCurrentIndex + 1) / \(studyData.count)"
+    }
+    
     
     // MARK: - Actions
-    @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func dataFilterButtonPressed(_ sender: UIBarButtonItem) {
         
         // Create alert
         let alert = UIAlertController(title: "Filter", message: "Choose which states and capitals to show.", preferredStyle: .actionSheet)
 
         // Add actions
         alert.addAction(UIAlertAction(title: "All", style: .default) { (action) in
-            self.studyData = States.all
-            self.filterButton.title = "All"
-            self.studyTableView.reloadData()
+            self.studyDataFilter = .all
+            self.dataFilterButton.title = "All"
+            self.listView.reloadData()
         })
         
         alert.addAction(UIAlertAction(title: "Midwest", style: .default) { (action) in
-            self.studyData = States.all.filter { $0.region == StateFilter.midwest }
-            self.filterButton.title = "Midwest"
-            self.studyTableView.reloadData()
+            self.studyDataFilter = .midwest
+            self.dataFilterButton.title = "Midwest"
+            self.listView.reloadData()
         })
         
         alert.addAction(UIAlertAction(title: "Northeast", style: .default) { (action) in
-            self.studyData = States.all.filter { $0.region == StateFilter.northeast }
-            self.filterButton.title = "Northeast"
-            self.studyTableView.reloadData()
+            self.studyDataFilter = .northeast
+            self.dataFilterButton.title = "Northeast"
+            self.listView.reloadData()
         })
         
         alert.addAction(UIAlertAction(title: "Southwest", style: .default) { (action) in
-            self.studyData = States.all.filter { $0.region == StateFilter.southwest }
-            self.filterButton.title = "Southwest"
-            self.studyTableView.reloadData()
+            self.studyDataFilter = .southwest
+            self.dataFilterButton.title = "Southwest"
+            self.listView.reloadData()
         })
 
         alert.addAction(UIAlertAction(title: "Southeast", style: .default) { (action) in
-            self.studyData = States.all.filter { $0.region == StateFilter.southeast }
-            self.filterButton.title = "Southeast"
-            self.studyTableView.reloadData()
+            self.studyDataFilter = .southeast
+            self.dataFilterButton.title = "Southeast"
+            self.listView.reloadData()
         })
         
         alert.addAction(UIAlertAction(title: "West", style: .default) { (action) in
-            self.studyData = States.all.filter { $0.region == StateFilter.west }
-            self.filterButton.title = "West"
-            self.studyTableView.reloadData()
+            self.studyDataFilter = .west
+            self.dataFilterButton.title = "West"
+            self.listView.reloadData()
         })
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -72,45 +132,47 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.present(alert, animated: true)
     }
     
-    @IBAction func switchButtonPressed(_ sender: UIBarButtonItem) {
-        studyDataReverse = !studyDataReverse
-        studyTableView.reloadData()
-    }
-    
-    @IBAction func formatButtonPressed(_ sender: UIBarButtonItem) {
-        print("formatPressed")
-    }
+    @IBAction func displayModeButtonPressed(_ sender: UIBarButtonItem) {
 
-    
-    @IBAction func showButtonPressed(_ sender: UIBarButtonItem) {
-
-        switch listAnswerDisplayState {
+        switch studyDisplayMode {
         case .show:
-            listAnswerDisplayState = .hide
+            studyDisplayMode = .hide
             for item in studyData {
-                item.answerDisplayState = .hide
+                item.displayState = .hide
             }
-            showButton.title = "Hint"
+            displayModeButton.title = "Hint"
         case .hint:
-            listAnswerDisplayState = .show
+            studyDisplayMode = .show
             for item in studyData {
-                item.answerDisplayState = .show
+                item.displayState = .show
             }
-            showButton.title = "Hide"
+            displayModeButton.title = "Hide"
         case .hide:
-            listAnswerDisplayState = .hint
+            studyDisplayMode = .hint
             for item in studyData {
-                item.answerDisplayState = .hint
+                item.displayState = .hint
             }
-            showButton.title = "Show"
+            displayModeButton.title = "Show"
         }
         
-        self.studyTableView.reloadData()
+        updateItemView()
+        self.listView.reloadData()
     }
+    
+    @IBAction func dataReverseButtonPressed(_ sender: UIBarButtonItem) {
+        studyDataReverse = !studyDataReverse
+        listView.reloadData()
+    }
+
+    @IBAction func itemModeButtonPressed(_ sender: UIBarButtonItem) {
+        itemView.isHidden = !itemView.isHidden
+        listView.isHidden = !itemView.isHidden
+        itemModeButton.title = itemView.isHidden ? "Item" : "List"
+    }
+    
     
     // MARK: - Table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return studyData.count
     }
     
@@ -127,33 +189,23 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.textLabel?.text = labelText
         
         // Set detail
-        switch studyData[indexPath.row].answerDisplayState {
-        case .hide:
-            cell.detailTextLabel?.text = ""
-        case .hint:
-            cell.detailTextLabel?.text = String(detailText[detailText.startIndex]) + "..."
-        case .show:
-            cell.detailTextLabel?.text = detailText
-        }
+        cell.detailTextLabel?.text = DisplayState.describe(answer: detailText, mode: studyData[indexPath.row].displayState)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let item = studyData[indexPath.row]
-        let currentState = item.answerDisplayState
+        // Update controllers
+        studyCurrentIndex = indexPath.row
         
-        switch currentState {
-        case .hide:
-            item.answerDisplayState = .hint
-        case .hint:
-            item.answerDisplayState = .show
-        case .show:
-            item.answerDisplayState = .hide
-        }
+        // Update item display state
+        let item = studyData[studyCurrentIndex]
+        item.displayState = DisplayState.next(state: item.displayState)
         
-        self.studyTableView.reloadData()
+        // Update Views
+        self.listView.reloadData()
+        updateProgressBar()
     }
         
 }

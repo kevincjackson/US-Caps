@@ -15,7 +15,7 @@
 		0A7C659922278BB400E141EA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C659822278BB400E141EA /* State.swift */; };
 		0A7C659E22278EEE00E141EA /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C659D22278EEE00E141EA /* States.swift */; };
 		0A7C65A22227B39700E141EA /* StateFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C65A12227B39700E141EA /* StateFilter.swift */; };
-		0AABB9C622456A45007A43C4 /* AnswerDisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABB9C522456A45007A43C4 /* AnswerDisplayState.swift */; };
+		0AABB9C622456A45007A43C4 /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABB9C522456A45007A43C4 /* DisplayState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		0A7C659822278BB400E141EA /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		0A7C659D22278EEE00E141EA /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		0A7C65A12227B39700E141EA /* StateFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateFilter.swift; sourceTree = "<group>"; };
-		0AABB9C522456A45007A43C4 /* AnswerDisplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerDisplayState.swift; sourceTree = "<group>"; };
+		0AABB9C522456A45007A43C4 /* DisplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				0A7C659822278BB400E141EA /* State.swift */,
-				0AABB9C522456A45007A43C4 /* AnswerDisplayState.swift */,
+				0AABB9C522456A45007A43C4 /* DisplayState.swift */,
 				0A7C659D22278EEE00E141EA /* States.swift */,
 				0A7C65A12227B39700E141EA /* StateFilter.swift */,
 			);
@@ -173,7 +173,7 @@
 			files = (
 				0A3EB8B72230982100917A13 /* StudyViewController.swift in Sources */,
 				0A7C65A22227B39700E141EA /* StateFilter.swift in Sources */,
-				0AABB9C622456A45007A43C4 /* AnswerDisplayState.swift in Sources */,
+				0AABB9C622456A45007A43C4 /* DisplayState.swift in Sources */,
 				0A7C658722278AB100E141EA /* AppDelegate.swift in Sources */,
 				0A7C659922278BB400E141EA /* State.swift in Sources */,
 				0A7C659E22278EEE00E141EA /* States.swift in Sources */,

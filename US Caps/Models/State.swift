@@ -14,12 +14,14 @@ class State {
     var capital = ""
     var region: StateFilter
     var missed = false
-    var answerDisplayState: AnswerDisplayState = .show
+    var displayState: DisplayState.Mode = .show
     
     init(name: String, capital: String, region: StateFilter) {
         self.name = name
         self.capital = capital
         self.region = region
     }
+    
+    
     
 }
