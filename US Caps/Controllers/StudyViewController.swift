@@ -55,13 +55,41 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setup item view
         listView.isHidden = false
         itemView.isHidden = true
         itemModeButton.title = "Item"
+        
+        // Add swipes for changing current item.
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(itemViewSwipedLeft))
+        swipeLeft.direction = .left
+        itemView.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(itemViewSwipedRight))
+        swipeRight.direction = .right
+        itemView.addGestureRecognizer(swipeRight)
     }
     
     
     // MARK: - Functions
+    
+    @objc func itemViewSwipedLeft() {
+        if studyCurrentIndex == studyData.count - 1 {
+            studyCurrentIndex = 0
+        } else {
+            studyCurrentIndex += 1
+        }
+    }
+    
+    @objc func itemViewSwipedRight() {
+        if studyCurrentIndex == 0 {
+            studyCurrentIndex = studyData.count - 1
+        } else {
+            studyCurrentIndex -= 1
+        }
+    }
+    
     func updateItemView() {
         let item = studyData[studyCurrentIndex]
         let capital = studyData[studyCurrentIndex].capital
@@ -132,6 +160,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.present(alert, animated: true)
     }
     
+    @IBAction func dataReverseButtonPressed(_ sender: UIBarButtonItem) {
+        studyDataReverse = !studyDataReverse
+        listView.reloadData()
+    }
+
     @IBAction func displayModeButtonPressed(_ sender: UIBarButtonItem) {
 
         switch studyDisplayMode {
@@ -159,17 +192,21 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.listView.reloadData()
     }
     
-    @IBAction func dataReverseButtonPressed(_ sender: UIBarButtonItem) {
-        studyDataReverse = !studyDataReverse
-        listView.reloadData()
-    }
-
     @IBAction func itemModeButtonPressed(_ sender: UIBarButtonItem) {
         itemView.isHidden = !itemView.isHidden
         listView.isHidden = !itemView.isHidden
         itemModeButton.title = itemView.isHidden ? "Item" : "List"
+        
+        // Update views
+        updateItemView()
+        self.listView.reloadData()
     }
     
+    @IBAction func itemViewTapped(_ sender: UITapGestureRecognizer) {
+        let item = studyData[studyCurrentIndex]
+        item.displayState = DisplayState.next(state: item.displayState)
+        updateItemView()
+    }
     
     // MARK: - Table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
