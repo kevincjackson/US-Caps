@@ -20,7 +20,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var listView: UITableView!
     @IBOutlet weak var progressLabel: UILabel!
     
-
     // MARK: - Controllers
     var studyCurrentIndex = 0 {
         didSet {
@@ -55,9 +54,12 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Setup item view
+
+        // List / Table View
         listView.isHidden = false
+        listView.backgroundColor = Constants.DarkBackground.to_UIColor()
+
+        // Item View
         itemView.isHidden = true
         itemModeButton.title = "Item"
         
@@ -73,6 +75,21 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     // MARK: - Functions
+    
+    // Gets a gradient color based on start on end colors
+    func getGradientColor(index: Int, max: Int, start: HSLColor = Constants.LightBackground, end: HSLColor = Constants.DarkBackground)  -> UIColor {
+        
+        let h_step = (end.h - start.h) / Double(max)
+        let s_step = (end.s - start.s) / Double(max)
+        let l_step = (end.l - start.l) / Double(max)
+
+        let h = start.h + (h_step * Double(index))
+        let s = start.s + (s_step * Double(index))
+        let l = start.l + (l_step * Double(index))
+
+        return HSLColor(h: h, s: s, l: l)!.to_UIColor()
+    }
+    
     
     @objc func itemViewSwipedLeft() {
         if studyCurrentIndex == studyData.count - 1 {
@@ -218,16 +235,20 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Create cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         
+        cell.backgroundColor = getGradientColor(index: indexPath.row, max: studyData.count)
+        
         let labelText = studyDataReverse ? studyData[indexPath.row].capital : studyData[indexPath.row].name
         
         let detailText = studyDataReverse ? studyData[indexPath.row].name : studyData[indexPath.row].capital
         
         // Set label
         cell.textLabel?.text = labelText
-        
+        cell.textLabel?.font = UIFont(name:"Kefa-Regular", size: 19)
+
         // Set detail
         cell.detailTextLabel?.text = DisplayState.describe(answer: detailText, mode: studyData[indexPath.row].displayState)
-        
+        cell.detailTextLabel?.font = UIFont(name:"Kefa-Regular", size: 19)
+
         return cell
     }
     

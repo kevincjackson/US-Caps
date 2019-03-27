@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A3EB8B72230982100917A13 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EB8B62230982100917A13 /* StudyViewController.swift */; };
+		0A5C8FAB224BE33300E7441B /* HSLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C8FAA224BE33300E7441B /* HSLColor.swift */; };
+		0A5C8FAD224BF32E00E7441B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5C8FAC224BF32E00E7441B /* Constants.swift */; };
 		0A7C658722278AB100E141EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C658622278AB100E141EA /* AppDelegate.swift */; };
 		0A7C658C22278AB100E141EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7C658A22278AB100E141EA /* Main.storyboard */; };
 		0A7C658E22278AB200E141EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7C658D22278AB200E141EA /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		0A3EB8B62230982100917A13 /* StudyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StudyViewController.swift; path = "US Caps/Controllers/StudyViewController.swift"; sourceTree = SOURCE_ROOT; };
+		0A5C8FAA224BE33300E7441B /* HSLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSLColor.swift; sourceTree = "<group>"; };
+		0A5C8FAC224BF32E00E7441B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0A7C658322278AB100E141EA /* US Caps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US Caps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7C658622278AB100E141EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A7C658B22278AB100E141EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,10 +78,12 @@
 		0A7C659A22278E3200E141EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0A5C8FAC224BF32E00E7441B /* Constants.swift */,
 				0A7C659822278BB400E141EA /* State.swift */,
 				0AABB9C522456A45007A43C4 /* DisplayState.swift */,
 				0A7C659D22278EEE00E141EA /* States.swift */,
 				0A7C65A12227B39700E141EA /* StateFilter.swift */,
+				0A5C8FAA224BE33300E7441B /* HSLColor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,6 +183,8 @@
 				0A7C658722278AB100E141EA /* AppDelegate.swift in Sources */,
 				0A7C659922278BB400E141EA /* State.swift in Sources */,
 				0A7C659E22278EEE00E141EA /* States.swift in Sources */,
+				0A5C8FAB224BE33300E7441B /* HSLColor.swift in Sources */,
+				0A5C8FAD224BF32E00E7441B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

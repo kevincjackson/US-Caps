@@ -16,6 +16,18 @@ class State {
     var missed = false
     var displayState: DisplayState.Mode = .show
     
+    enum Filter {
+        
+        case all
+        case midwest
+        case missed
+        case northeast
+        case southwest
+        case southeast
+        case west
+        
+    }
+    
     init(name: String, capital: String, region: StateFilter) {
         self.name = name
         self.capital = capital
