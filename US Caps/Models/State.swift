@@ -12,12 +12,11 @@ class State {
     
     var name = ""
     var capital = ""
-    var region: StateFilter
+    var region: Filter
     var missed = false
     var displayState: DisplayState.Mode = .show
     
     enum Filter {
-        
         case all
         case midwest
         case missed
@@ -25,10 +24,9 @@ class State {
         case southwest
         case southeast
         case west
-        
     }
     
-    init(name: String, capital: String, region: StateFilter) {
+    init(name: String, capital: String, region: Filter) {
         self.name = name
         self.capital = capital
         self.region = region

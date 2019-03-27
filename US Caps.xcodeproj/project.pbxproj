@@ -16,7 +16,6 @@
 		0A7C659122278AB200E141EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7C658F22278AB200E141EA /* LaunchScreen.storyboard */; };
 		0A7C659922278BB400E141EA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C659822278BB400E141EA /* State.swift */; };
 		0A7C659E22278EEE00E141EA /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C659D22278EEE00E141EA /* States.swift */; };
-		0A7C65A22227B39700E141EA /* StateFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C65A12227B39700E141EA /* StateFilter.swift */; };
 		0AABB9C622456A45007A43C4 /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABB9C522456A45007A43C4 /* DisplayState.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		0A7C659222278AB200E141EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A7C659822278BB400E141EA /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		0A7C659D22278EEE00E141EA /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
-		0A7C65A12227B39700E141EA /* StateFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateFilter.swift; sourceTree = "<group>"; };
 		0AABB9C522456A45007A43C4 /* DisplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,11 +77,10 @@
 			isa = PBXGroup;
 			children = (
 				0A5C8FAC224BF32E00E7441B /* Constants.swift */,
-				0A7C659822278BB400E141EA /* State.swift */,
 				0AABB9C522456A45007A43C4 /* DisplayState.swift */,
-				0A7C659D22278EEE00E141EA /* States.swift */,
-				0A7C65A12227B39700E141EA /* StateFilter.swift */,
 				0A5C8FAA224BE33300E7441B /* HSLColor.swift */,
+				0A7C659822278BB400E141EA /* State.swift */,
+				0A7C659D22278EEE00E141EA /* States.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,7 +175,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A3EB8B72230982100917A13 /* StudyViewController.swift in Sources */,
-				0A7C65A22227B39700E141EA /* StateFilter.swift in Sources */,
 				0AABB9C622456A45007A43C4 /* DisplayState.swift in Sources */,
 				0A7C658722278AB100E141EA /* AppDelegate.swift in Sources */,
 				0A7C659922278BB400E141EA /* State.swift in Sources */,

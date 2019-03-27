@@ -15,10 +15,14 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var displayModeButton: UIBarButtonItem!
     @IBOutlet weak var itemModeButton: UIBarButtonItem!
     @IBOutlet weak var itemView: UIView!
+    @IBOutlet weak var itemQuestionView: UIView!
+    @IBOutlet weak var itemAnswerView: UIView!
+    @IBOutlet weak var itemProgessBar: UIView!
+    @IBOutlet weak var itemProgressLabel: UILabel!
     @IBOutlet weak var itemQuestionLabel: UILabel!
     @IBOutlet weak var itemAnswerLabel: UILabel!
     @IBOutlet weak var listView: UITableView!
-    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     // MARK: - Controllers
     var studyCurrentIndex = 0 {
@@ -28,7 +32,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     var studyData = States.all
-    var studyDataFilter: StateFilter = .all {
+    var studyDataFilter: State.Filter = .all {
         didSet {
             if studyDataFilter == .all {
                 studyData = States.all
@@ -50,18 +54,34 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     var studyItemMode = false
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Main View
+        self.view.backgroundColor = UIColor.black
+        
+        // Toolbar
+        toolbar.barTintColor = Constants.DarkBackground.to_UIColor()
+        
         // List / Table View
         listView.isHidden = false
         listView.backgroundColor = Constants.DarkBackground.to_UIColor()
-
+        listView.rowHeight = 100
+        
         // Item View
         itemView.isHidden = true
         itemModeButton.title = "Item"
+        itemQuestionView.backgroundColor = Constants.LightBackground.to_UIColor()
+        itemQuestionLabel.textColor = Constants.DarkText.to_UIColor()
+        itemAnswerView.backgroundColor = getGradientColor(index: 1, max: 2)
+        itemAnswerLabel.textColor = Constants.DarkText.to_UIColor()
+        itemProgessBar.backgroundColor = Constants.DarkBackground.to_UIColor()
+        itemProgressLabel.textColor = Constants.LightText.to_UIColor()
         
         // Add swipes for changing current item.
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(itemViewSwipedLeft))
@@ -90,6 +110,14 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return HSLColor(h: h, s: s, l: l)!.to_UIColor()
     }
     
+    
+    func getContrastColor(_ color: UIColor) -> UIColor {
+        
+        let col = CIColor(color: color)
+        let value = (col.red + col.green + col.blue) / 3
+        
+        return value < 0.61 ? Constants.LightBackground.to_UIColor() : Constants.DarkText.to_UIColor()
+    }
     
     @objc func itemViewSwipedLeft() {
         if studyCurrentIndex == studyData.count - 1 {
@@ -125,7 +153,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func updateProgressBar() {
-        progressLabel.text = "\(studyCurrentIndex + 1) / \(studyData.count)"
+        itemProgressLabel.text = "\(studyCurrentIndex + 1) / \(studyData.count)"
     }
     
     
@@ -235,7 +263,12 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Create cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         
-        cell.backgroundColor = getGradientColor(index: indexPath.row, max: studyData.count)
+        if studyData.count < 26 {
+            cell.backgroundColor = getGradientColor(index: indexPath.row, max: studyData.count)
+        }
+        else {
+            cell.backgroundColor = getGradientColor(index: indexPath.row, max: studyData.count, start: Constants.LightBackground, end: Constants.SuperDarkBackground)
+        }
         
         let labelText = studyDataReverse ? studyData[indexPath.row].capital : studyData[indexPath.row].name
         
@@ -243,11 +276,14 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Set label
         cell.textLabel?.text = labelText
-        cell.textLabel?.font = UIFont(name:"Kefa-Regular", size: 19)
+        cell.textLabel?.font = Constants.NormalFont
+        cell.textLabel?.textColor = getContrastColor(cell.backgroundColor!)
 
         // Set detail
         cell.detailTextLabel?.text = DisplayState.describe(answer: detailText, mode: studyData[indexPath.row].displayState)
-        cell.detailTextLabel?.font = UIFont(name:"Kefa-Regular", size: 19)
+        cell.detailTextLabel?.font = Constants.NormalFont
+        cell.detailTextLabel?.textColor = getContrastColor(cell.backgroundColor!)
+
 
         return cell
     }
