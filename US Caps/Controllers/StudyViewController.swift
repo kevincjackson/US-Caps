@@ -66,7 +66,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.view.backgroundColor = UIColor.black
         
         // Toolbar
-        toolbar.barTintColor = Constants.DarkBackground.to_UIColor()
+        toolbar.barTintColor = Constants.Orange?.to_UIColor()
         
         // List / Table View
         listView.isHidden = false
@@ -78,7 +78,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         itemModeButton.title = "Item"
         itemQuestionView.backgroundColor = Constants.LightBackground.to_UIColor()
         itemQuestionLabel.textColor = Constants.DarkText.to_UIColor()
-        itemAnswerView.backgroundColor = getGradientColor(index: 1, max: 2)
+        itemAnswerView.backgroundColor = Constants.DarkBackground.to_UIColor()
         itemAnswerLabel.textColor = Constants.DarkText.to_UIColor()
         itemProgessBar.backgroundColor = Constants.DarkBackground.to_UIColor()
         itemProgressLabel.textColor = Constants.LightText.to_UIColor()
@@ -215,21 +215,15 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         switch studyDisplayMode {
         case .show:
             studyDisplayMode = .hide
-            for item in studyData {
-                item.displayState = .hide
-            }
+            studyData.forEach { $0.displayState = .hide }
             displayModeButton.title = "Hint"
         case .hint:
             studyDisplayMode = .show
-            for item in studyData {
-                item.displayState = .show
-            }
+            studyData.forEach { $0.displayState = .show }
             displayModeButton.title = "Hide"
         case .hide:
             studyDisplayMode = .hint
-            for item in studyData {
-                item.displayState = .hint
-            }
+            studyData.forEach { $0.displayState = .hint }
             displayModeButton.title = "Show"
         }
         
@@ -263,12 +257,8 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Create cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         
-        if studyData.count < 26 {
-            cell.backgroundColor = getGradientColor(index: indexPath.row, max: studyData.count)
-        }
-        else {
-            cell.backgroundColor = getGradientColor(index: indexPath.row, max: studyData.count, start: Constants.LightBackground, end: Constants.SuperDarkBackground)
-        }
+        // BG Color
+        cell.backgroundColor = indexPath.row % 2 == 0 ? Constants.LightBackground.to_UIColor() : Constants.DarkBackground.to_UIColor()
         
         let labelText = studyDataReverse ? studyData[indexPath.row].capital : studyData[indexPath.row].name
         
@@ -277,13 +267,12 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Set label
         cell.textLabel?.text = labelText
         cell.textLabel?.font = Constants.NormalFont
-        cell.textLabel?.textColor = getContrastColor(cell.backgroundColor!)
+        cell.textLabel?.textColor = Constants.DarkText.to_UIColor()
 
         // Set detail
         cell.detailTextLabel?.text = DisplayState.describe(answer: detailText, mode: studyData[indexPath.row].displayState)
         cell.detailTextLabel?.font = Constants.NormalFont
-        cell.detailTextLabel?.textColor = getContrastColor(cell.backgroundColor!)
-
+        cell.detailTextLabel?.textColor = Constants.DarkText.to_UIColor()
 
         return cell
     }
