@@ -255,7 +255,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Create cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         // BG Color
         cell.backgroundColor = indexPath.row % 2 == 0 ? Constants.LightBackground.to_UIColor() : Constants.DarkBackground.to_UIColor()
