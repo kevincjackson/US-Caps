@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PvD-uA-LhM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PvD-uA-LhM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -95,6 +95,10 @@
                                                         <fontDescription key="fontDescription" name="Kefa-Regular" family="Kefa" pointSize="32"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="t31-56-VyG">
+                                                        <rect key="frame" x="0.0" y="277" width="375" height="2"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </progressView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -194,6 +198,7 @@
                         <outlet property="itemQuestionView" destination="Kzm-TU-4xY" id="eF2-Y3-K28"/>
                         <outlet property="itemView" destination="RTa-SL-nlz" id="B4c-gY-hty"/>
                         <outlet property="listView" destination="JQP-C9-ubo" id="uJS-Cg-3r4"/>
+                        <outlet property="progressView" destination="t31-56-VyG" id="tw4-EW-ge2"/>
                         <outlet property="toolbar" destination="wO0-tI-iPe" id="qdp-Ec-Nou"/>
                     </connections>
                 </viewController>

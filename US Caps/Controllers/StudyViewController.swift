@@ -22,12 +22,13 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var itemQuestionLabel: UILabel!
     @IBOutlet weak var itemAnswerLabel: UILabel!
     @IBOutlet weak var listView: UITableView!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var toolbar: UIToolbar!
+    
     
     // MARK: - Controllers
     var studyCurrentIndex = 0 {
         didSet {
-            updateProgressBar()
             updateItemView()
         }
     }
@@ -147,16 +148,15 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Modify answer depending on hint mode
         answer = DisplayState.describe(answer: answer, mode: item.displayState)
         
-        // Update view
+        // Update question and answer
         itemQuestionLabel.text = question
         itemAnswerLabel.text = answer
-    }
-    
-    func updateProgressBar() {
+        
+        // Update progress
         itemProgressLabel.text = "\(studyCurrentIndex + 1) / \(studyData.count)"
+        progressView.progress = Float(studyCurrentIndex + 1) / Float(studyData.count)
     }
-    
-    
+
     // MARK: - Actions
     @IBAction func dataFilterButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -288,7 +288,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Update Views
         self.listView.reloadData()
-        updateProgressBar()
     }
         
 }
