@@ -47,5 +47,29 @@ struct HSLColor {
         return UIColor(hue: CGFloat(hsb_h), saturation: CGFloat(hsb_s), brightness: CGFloat(hsb_b), alpha: 1)
     }
     
+    // MARK: - TODO: Extract to Extension
+    // Gets a gradient color based on start on end colors
+    func getGradientColor(index: Int, max: Int, start: HSLColor = Constants.LightBackground, end: HSLColor = Constants.DarkBackground)  -> UIColor {
+        
+        let h_step = (end.h - start.h) / Double(max)
+        let s_step = (end.s - start.s) / Double(max)
+        let l_step = (end.l - start.l) / Double(max)
+        
+        let h = start.h + (h_step * Double(index))
+        let s = start.s + (s_step * Double(index))
+        let l = start.l + (l_step * Double(index))
+        
+        return HSLColor(h: h, s: s, l: l)!.to_UIColor()
+    }
+    
+    // MARK: - TODO: Extract to Extension
+    func getContrastColor(_ color: UIColor) -> UIColor {
+        
+        let col = CIColor(color: color)
+        let value = (col.red + col.green + col.blue) / 3
+        
+        return value < 0.61 ? Constants.LightBackground.to_UIColor() : Constants.DarkText.to_UIColor()
+    }
+    
 }
 

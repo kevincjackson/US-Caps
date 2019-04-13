@@ -55,34 +55,17 @@ class StudyViewController: UIViewController {
     }
     var studyItemMode = false
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Main View
-        self.view.backgroundColor = UIColor.black
-        
-        // Toolbar
-        toolbar.barTintColor = Constants.Orange?.to_UIColor()
-        
+    
         // List / Table View
         listView.isHidden = false
-        listView.backgroundColor = Constants.DarkBackground.to_UIColor()
         listView.rowHeight = 100
         
         // Item View
         itemView.isHidden = true
         itemModeButton.title = "Item"
-        itemQuestionView.backgroundColor = Constants.LightBackground.to_UIColor()
-        itemQuestionLabel.textColor = Constants.DarkText.to_UIColor()
-        itemAnswerView.backgroundColor = Constants.DarkBackground.to_UIColor()
-        itemAnswerLabel.textColor = Constants.DarkText.to_UIColor()
-        itemProgessBar.backgroundColor = Constants.DarkBackground.to_UIColor()
-        itemProgressLabel.textColor = Constants.LightText.to_UIColor()
         
         // Add swipes for changing current item.
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(itemViewSwipedLeft))
@@ -95,31 +78,7 @@ class StudyViewController: UIViewController {
     }
     
     
-    // MARK: - Functions
-    
-    // Gets a gradient color based on start on end colors
-    func getGradientColor(index: Int, max: Int, start: HSLColor = Constants.LightBackground, end: HSLColor = Constants.DarkBackground)  -> UIColor {
-        
-        let h_step = (end.h - start.h) / Double(max)
-        let s_step = (end.s - start.s) / Double(max)
-        let l_step = (end.l - start.l) / Double(max)
-
-        let h = start.h + (h_step * Double(index))
-        let s = start.s + (s_step * Double(index))
-        let l = start.l + (l_step * Double(index))
-
-        return HSLColor(h: h, s: s, l: l)!.to_UIColor()
-    }
-    
-    
-    func getContrastColor(_ color: UIColor) -> UIColor {
-        
-        let col = CIColor(color: color)
-        let value = (col.red + col.green + col.blue) / 3
-        
-        return value < 0.61 ? Constants.LightBackground.to_UIColor() : Constants.DarkText.to_UIColor()
-    }
-    
+    // MARK: - Helper Functions
     @objc func itemViewSwipedLeft() {
         if studyCurrentIndex == studyData.count - 1 {
             studyCurrentIndex = 0
@@ -205,7 +164,7 @@ class StudyViewController: UIViewController {
         }
         
         updateItemView()
-        self.listView.reloadData()
+        listView.reloadData()
     }
     
     @IBAction func itemModeButtonPressed(_ sender: UIBarButtonItem) {
@@ -215,7 +174,7 @@ class StudyViewController: UIViewController {
         
         // Update views
         updateItemView()
-        self.listView.reloadData()
+        listView.reloadData()
     }
     
     @IBAction func itemViewTapped(_ sender: UITapGestureRecognizer) {
@@ -237,23 +196,14 @@ extension StudyViewController: UITableViewDelegate, UITableViewDataSource {
         
         // Create cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        // BG Color
-        cell.backgroundColor = indexPath.row % 2 == 0 ? Constants.LightBackground.to_UIColor() : Constants.DarkBackground.to_UIColor()
-        
         let labelText = studyDataReverse ? studyData[indexPath.row].capital : studyData[indexPath.row].name
-        
         let detailText = studyDataReverse ? studyData[indexPath.row].name : studyData[indexPath.row].capital
         
         // Set label
         cell.textLabel?.text = labelText
-        cell.textLabel?.font = Constants.NormalFont
-        cell.textLabel?.textColor = Constants.DarkText.to_UIColor()
         
         // Set detail
         cell.detailTextLabel?.text = DisplayState.describe(answer: detailText, mode: studyData[indexPath.row].displayState)
-        cell.detailTextLabel?.font = Constants.NormalFont
-        cell.detailTextLabel?.textColor = Constants.DarkText.to_UIColor()
         
         return cell
     }

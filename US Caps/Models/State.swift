@@ -31,6 +31,4 @@ class State {
         self.region = region
     }
     
-    
-    
 }
