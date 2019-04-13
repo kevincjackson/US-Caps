@@ -16,10 +16,9 @@ class State {
     var missed = false
     var displayState: DisplayState.Mode = .show
     
-    enum Filter {
+    enum Filter: CaseIterable {
         case all
         case midwest
-        case missed
         case northeast
         case southwest
         case southeast

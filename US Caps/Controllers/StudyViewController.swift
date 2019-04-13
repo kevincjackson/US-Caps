@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class StudyViewController: UIViewController {
 
     // MARK: - View Outlets
     @IBOutlet weak var dataFilterButton: UIBarButtonItem!
@@ -163,45 +163,22 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Create alert
         let alert = UIAlertController(title: "Filter", message: "Choose which states and capitals to show.", preferredStyle: .actionSheet)
 
-        // Add actions
-        alert.addAction(UIAlertAction(title: "All", style: .default) { (action) in
-            self.studyDataFilter = .all
-            self.dataFilterButton.title = "All"
-            self.listView.reloadData()
-        })
-        
-        alert.addAction(UIAlertAction(title: "Midwest", style: .default) { (action) in
-            self.studyDataFilter = .midwest
-            self.dataFilterButton.title = "Midwest"
-            self.listView.reloadData()
-        })
-        
-        alert.addAction(UIAlertAction(title: "Northeast", style: .default) { (action) in
-            self.studyDataFilter = .northeast
-            self.dataFilterButton.title = "Northeast"
-            self.listView.reloadData()
-        })
-        
-        alert.addAction(UIAlertAction(title: "Southwest", style: .default) { (action) in
-            self.studyDataFilter = .southwest
-            self.dataFilterButton.title = "Southwest"
-            self.listView.reloadData()
-        })
+        // Add State Filter actions
+        State.Filter.allCases.forEach { (stateFilter) in
+            alert.addAction(UIAlertAction(
+                title: "\(stateFilter)".capitalized,
+                style: .default,
+                handler: { (action) in
+                    self.studyDataFilter = stateFilter
+                    self.dataFilterButton.title = "\(stateFilter)".capitalized
+                    self.listView.reloadData()
+            }))
+        }
 
-        alert.addAction(UIAlertAction(title: "Southeast", style: .default) { (action) in
-            self.studyDataFilter = .southeast
-            self.dataFilterButton.title = "Southeast"
-            self.listView.reloadData()
-        })
-        
-        alert.addAction(UIAlertAction(title: "West", style: .default) { (action) in
-            self.studyDataFilter = .west
-            self.dataFilterButton.title = "West"
-            self.listView.reloadData()
-        })
-        
+        // Add Cancel
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
+        // Show it
         self.present(alert, animated: true)
     }
     
@@ -246,8 +223,12 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         item.displayState = DisplayState.next(state: item.displayState)
         updateItemView()
     }
+}
+
+// MARK: - TableView
+extension StudyViewController: UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: - Table
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return studyData.count
     }
@@ -268,12 +249,12 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.textLabel?.text = labelText
         cell.textLabel?.font = Constants.NormalFont
         cell.textLabel?.textColor = Constants.DarkText.to_UIColor()
-
+        
         // Set detail
         cell.detailTextLabel?.text = DisplayState.describe(answer: detailText, mode: studyData[indexPath.row].displayState)
         cell.detailTextLabel?.font = Constants.NormalFont
         cell.detailTextLabel?.textColor = Constants.DarkText.to_UIColor()
-
+        
         return cell
     }
     
@@ -289,5 +270,4 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Update Views
         self.listView.reloadData()
     }
-        
 }
