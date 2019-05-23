@@ -14,6 +14,9 @@ class StudyViewController: UIViewController {
     @IBOutlet weak var dataFilterButton: UIBarButtonItem!
     @IBOutlet weak var displayModeButton: UIBarButtonItem!
     @IBOutlet weak var itemModeButton: UIBarButtonItem!
+    
+    
+    // MARK - Item View
     @IBOutlet weak var itemView: UIView!
     @IBOutlet weak var itemQuestionView: UIView!
     @IBOutlet weak var itemAnswerView: UIView!
@@ -22,6 +25,7 @@ class StudyViewController: UIViewController {
     @IBOutlet weak var itemQuestionLabel: UILabel!
     @IBOutlet weak var itemAnswerLabel: UILabel!
     @IBOutlet weak var listView: UITableView!
+    // More Item View
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var toolbar: UIToolbar!
     
