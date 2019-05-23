@@ -16,22 +16,7 @@ struct DisplayMode {
         case show
     }
     
-    // MARK: TODO Refactor to String extension
-    static func describe(item: String, mode: DisplayMode.Mode) -> String {
-        var description: String
-        switch mode {
-        case .hide:
-            description = ""
-        case .hint:
-            description = String(item[item.startIndex]) + "..."
-        case .show:
-            description = item
-        }
-        
-        return description
-    }
-    
-    static func next(state: Mode) -> Mode {
+    static func next(basedOnCurrentStateOf state: Mode) -> Mode {
         
         var nextState: Mode
         

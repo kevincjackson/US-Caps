@@ -18,10 +18,26 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let labelText = worldStateController.worldState.displayReversed ? worldStateController.worldState.states[indexPath.row].capital : worldStateController.worldState.states[indexPath.row].name
+        let detailText = worldStateController.worldState.displayReversed ? worldStateController.worldState.states[indexPath.row].name : worldStateController.worldState.states[indexPath.row].capital
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
-        cell.textLabel?.text = worldStateController.worldState.states[indexPath.row].name
-        cell.detailTextLabel?.text = worldStateController.worldState.states[indexPath.row].capital
+        
+        cell.textLabel?.text = labelText
+        cell.detailTextLabel?.text = detailText.display(usingMode: worldStateController.worldState.displayMode)
         
         return cell
     }
+    
+    // MARK: Implement
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let state = worldStateController.worldState.states[indexPath.row]
+        // 1) Change index - itemView needs it
+        //       studyCurrentIndex = indexPath.row
+        // 2) change display state
+        //        item.displayState = DisplayMode.next(state: item.displayState)
+       tableView.reloadData()
+    }
 }
+
+

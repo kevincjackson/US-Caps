@@ -10,15 +10,14 @@ import Foundation
 
 extension String {
     
-    var displayModeHide: String {
-        return ""
-    }
-    
-    var displayModeHint: String {
-        return String(self[self.startIndex]) + "..."
-    }
-    
-    var displayModeShow: String {
-        return self
+    func display(usingMode mode: DisplayMode.Mode) -> String {
+        switch mode {
+        case .show:
+            return self
+        case .hint:
+            return String(self[self.startIndex]) + "..."
+        case .hide:
+            return ""
+        }
     }
 }

@@ -122,7 +122,7 @@ class StudyViewController: UIViewController {
         var answer = studyDataReverse ? state : capital
         
         // Modify answer depending on hint mode
-        answer = DisplayMode.describe(item: answer, mode: item.displayState)
+        answer = "" // DESCRIBE
         
         // Update question and answer
         itemQuestionLabel.text = question
@@ -220,7 +220,7 @@ extension StudyViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = labelText
         
         // Set detail
-        cell.detailTextLabel?.text = DisplayMode.describe(item: detailText, mode: studyData[indexPath.row].displayState)
+        cell.detailTextLabel?.text = ""
         
         return cell
     }
