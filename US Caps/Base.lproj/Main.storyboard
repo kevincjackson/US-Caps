@@ -13,7 +13,7 @@
         <!--US Caps-->
         <scene sceneID="g0X-1P-oJm">
             <objects>
-                <viewController id="122-HG-qtB" customClass="MainViewController" customModule="US_Caps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="122-HG-qtB" customClass="CompositeViewController" customModule="US_Caps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="76C-rn-lDW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMB-9b-HBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3259.4202898550725" y="-519.64285714285711"/>
+            <point key="canvasLocation" x="3251" y="-521"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="04C-Vb-HdZ">
@@ -326,7 +326,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5008" y="-756"/>
+            <point key="canvasLocation" x="4978" y="-546"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DK2-Pl-zvB">
@@ -344,12 +344,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7Q-ZI-H5i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2320.8000000000002" y="-519.49025487256381"/>
+            <point key="canvasLocation" x="2368" y="-520"/>
         </scene>
-        <!--View Controller-->
+        <!--Item View Controller-->
         <scene sceneID="Q07-s8-K0c">
             <objects>
-                <viewController id="9DX-Yh-VXx" sceneMemberID="viewController">
+                <viewController id="9DX-Yh-VXx" customClass="ItemViewController" customModule="US_Caps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Iym-hV-uc9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="413"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -361,8 +361,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="183.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="state" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4WS-ts-uDJ">
-                                                <rect key="frame" x="141" y="81.5" width="38.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="128" y="74" width="64" height="36"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -377,8 +377,8 @@
                                         <rect key="frame" x="0.0" y="183.5" width="320" height="183.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="capital" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFE-S4-T5C">
-                                                <rect key="frame" x="134.5" y="81.5" width="51" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="117.5" y="74" width="85.5" height="36"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -397,7 +397,7 @@
                                             </progressView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wlz-IV-4GI">
                                                 <rect key="frame" x="126.5" y="13" width="67.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -427,6 +427,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y2R-co-MHk"/>
                     </view>
+                    <connections>
+                        <outlet property="answerLabel" destination="WFE-S4-T5C" id="iWr-4o-d3g"/>
+                        <outlet property="progresLabel" destination="Wlz-IV-4GI" id="gQj-Om-8y6"/>
+                        <outlet property="questionLabel" destination="4WS-ts-uDJ" id="IQK-FF-bMa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t5U-dw-Dvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

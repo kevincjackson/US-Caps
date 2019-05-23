@@ -8,16 +8,15 @@
 
 import Foundation
 
-class State {
+struct State {
     
+    var id = 0
     var name = ""
     var capital = ""
-    var region: Filter
-    var missed = false
-    var displayState: DisplayState.Mode = .show
+    var region: Region
+    var displayState: DisplayMode.Mode = .show
     
-    enum Filter: CaseIterable {
-        case all
+    enum Region: CaseIterable {
         case midwest
         case northeast
         case southwest
@@ -25,7 +24,8 @@ class State {
         case west
     }
     
-    init(name: String, capital: String, region: Filter) {
+    init(id: Int, name: String, capital: String, region: Region) {
+        self.id = id
         self.name = name
         self.capital = capital
         self.region = region

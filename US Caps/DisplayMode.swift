@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DisplayState {
+struct DisplayMode {
     
     enum Mode {
         case hide
@@ -16,15 +16,16 @@ struct DisplayState {
         case show
     }
     
-    static func describe(answer: String, mode: DisplayState.Mode) -> String {
+    // MARK: TODO Refactor to String extension
+    static func describe(item: String, mode: DisplayMode.Mode) -> String {
         var description: String
         switch mode {
         case .hide:
             description = ""
         case .hint:
-            description = String(answer[answer.startIndex]) + "..."
+            description = String(item[item.startIndex]) + "..."
         case .show:
-            description = answer
+            description = item
         }
         
         return description

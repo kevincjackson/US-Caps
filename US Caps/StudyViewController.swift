@@ -18,16 +18,26 @@ class StudyViewController: UIViewController {
     
     // MARK - Item View
     @IBOutlet weak var itemView: UIView!
+    
     @IBOutlet weak var itemQuestionView: UIView!
+    
     @IBOutlet weak var itemAnswerView: UIView!
+    
+    
     @IBOutlet weak var itemProgessBar: UIView!
     @IBOutlet weak var itemProgressLabel: UILabel!
     @IBOutlet weak var itemQuestionLabel: UILabel!
     @IBOutlet weak var itemAnswerLabel: UILabel!
-    @IBOutlet weak var listView: UITableView!
+    
     // More Item View
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var toolbar: UIToolbar!
+    
+    
+    // List View
+    @IBOutlet weak var listView: UITableView!
+
+    
     
     
     // MARK: - Controllers
@@ -37,14 +47,14 @@ class StudyViewController: UIViewController {
         }
     }
     var studyData = States.all
-    var studyDataFilter: State.Filter = .all {
+    var studyDataFilter: WorldState.Filter = .all {
         didSet {
-            if studyDataFilter == .all {
-                studyData = States.all
-            } else {
-                studyData = States.all.filter { $0.region == studyDataFilter }
-            }
-            studyCurrentIndex = 0
+//            if studyDataFilter == .all {
+//                studyData = States.all
+//            } else {
+//                studyData = States.all.filter { $0.region == studyDataFilter }
+//            }
+//            studyCurrentIndex = 0
         }
     }
     var studyDataReverse = false {
@@ -52,12 +62,15 @@ class StudyViewController: UIViewController {
             updateItemView()
         }
     }
-    var studyDisplayMode: DisplayState.Mode = .show {
+    var studyDisplayMode: DisplayMode.Mode = .show {
         didSet {
             updateItemView()
         }
     }
     var studyItemMode = false
+    
+    
+    
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -109,7 +122,7 @@ class StudyViewController: UIViewController {
         var answer = studyDataReverse ? state : capital
         
         // Modify answer depending on hint mode
-        answer = DisplayState.describe(answer: answer, mode: item.displayState)
+        answer = DisplayMode.describe(item: answer, mode: item.displayState)
         
         // Update question and answer
         itemQuestionLabel.text = question
@@ -127,22 +140,22 @@ class StudyViewController: UIViewController {
         let alert = UIAlertController(title: "Filter", message: "Choose which states and capitals to show.", preferredStyle: .actionSheet)
 
         // Add State Filter actions
-        State.Filter.allCases.forEach { (stateFilter) in
-            alert.addAction(UIAlertAction(
-                title: "\(stateFilter)".capitalized,
-                style: .default,
-                handler: { (action) in
-                    self.studyDataFilter = stateFilter
-                    self.dataFilterButton.title = "\(stateFilter)".capitalized
-                    self.listView.reloadData()
-            }))
-        }
-
-        // Add Cancel
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        // Show it
-        self.present(alert, animated: true)
+//        State.Filter.allCases.forEach { (stateFilter) in
+//            alert.addAction(UIAlertAction(
+//                title: "\(stateFilter)".capitalized,
+//                style: .default,
+//                handler: { (action) in
+//                    self.studyDataFilter = stateFilter
+//                    self.dataFilterButton.title = "\(stateFilter)".capitalized
+//                    self.listView.reloadData()
+//            }))
+//        }
+//
+//        // Add Cancel
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        
+//        // Show it
+//        self.present(alert, animated: true)
     }
     
     @IBAction func dataReverseButtonPressed(_ sender: UIBarButtonItem) {
@@ -155,15 +168,15 @@ class StudyViewController: UIViewController {
         switch studyDisplayMode {
         case .show:
             studyDisplayMode = .hide
-            studyData.forEach { $0.displayState = .hide }
+//            studyData.forEach { $0.displayState = .hide }
             displayModeButton.title = "Hint"
         case .hint:
             studyDisplayMode = .show
-            studyData.forEach { $0.displayState = .show }
+//            studyData.forEach { $0.displayState = .show }
             displayModeButton.title = "Hide"
         case .hide:
             studyDisplayMode = .hint
-            studyData.forEach { $0.displayState = .hint }
+//            studyData.forEach { $0.displayState = .hint }
             displayModeButton.title = "Show"
         }
         
@@ -183,7 +196,7 @@ class StudyViewController: UIViewController {
     
     @IBAction func itemViewTapped(_ sender: UITapGestureRecognizer) {
         let item = studyData[studyCurrentIndex]
-        item.displayState = DisplayState.next(state: item.displayState)
+//        item.displayState = DisplayMode.next(state: item.displayState)
         updateItemView()
     }
 }
@@ -207,7 +220,7 @@ extension StudyViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = labelText
         
         // Set detail
-        cell.detailTextLabel?.text = DisplayState.describe(answer: detailText, mode: studyData[indexPath.row].displayState)
+        cell.detailTextLabel?.text = DisplayMode.describe(item: detailText, mode: studyData[indexPath.row].displayState)
         
         return cell
     }
@@ -219,7 +232,7 @@ extension StudyViewController: UITableViewDelegate, UITableViewDataSource {
         
         // Update item display state
         let item = studyData[studyCurrentIndex]
-        item.displayState = DisplayState.next(state: item.displayState)
+//        item.displayState = DisplayMode.next(state: item.displayState)
         
         // Update Views
         self.listView.reloadData()

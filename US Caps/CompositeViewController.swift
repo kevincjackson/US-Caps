@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class CompositeViewController: UIViewController {
     
     @IBOutlet var viewA: UIView!
     @IBOutlet var viewB: UIView!
