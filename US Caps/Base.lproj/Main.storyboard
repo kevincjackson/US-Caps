@@ -49,13 +49,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uh1-Ws-ov6" userLabel="A">
                                 <rect key="frame" x="0.0" y="155" width="320" height="413"/>
                                 <connections>
-                                    <segue destination="DCr-nN-aRD" kind="embed" id="RUd-2a-QGI"/>
+                                    <segue destination="DCr-nN-aRD" kind="embed" identifier="listViewSegue" id="RUd-2a-QGI"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIo-nO-BDm" userLabel="B">
                                 <rect key="frame" x="0.0" y="155" width="320" height="413"/>
                                 <connections>
-                                    <segue destination="9DX-Yh-VXx" kind="embed" id="88O-Yh-8jE"/>
+                                    <segue destination="9DX-Yh-VXx" kind="embed" identifier="itemViewSegue" id="88O-Yh-8jE"/>
                                 </connections>
                             </containerView>
                         </subviews>

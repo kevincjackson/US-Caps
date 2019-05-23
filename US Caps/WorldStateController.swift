@@ -11,7 +11,7 @@ import Foundation
 class WorldStateController {
     
     public private(set) var worldState: WorldState
-
+    
     init() {
         self.worldState = WorldState()
     }

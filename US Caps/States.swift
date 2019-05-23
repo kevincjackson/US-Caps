@@ -62,5 +62,4 @@ struct States {
         State(id: 48, name: "Wisconsin", capital: "Madison", region: .midwest),
         State(id: 49, name: "Wyoming", capital: "Cheyenne", region: .west)
     ]
-    
 }

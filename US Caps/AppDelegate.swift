@@ -12,10 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var worldStateController = WorldStateController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-          
+        
+        let navVC = window?.rootViewController as! UINavigationController
+        let compVC = navVC.topViewController as! CompositeViewController
+        compVC.worldStateController = worldStateController
+        
         return true
     }
 

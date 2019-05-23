@@ -10,15 +10,17 @@ import UIKit
 
 class ListViewController: UITableViewController {
     
+    var worldStateController: WorldStateController!
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return worldStateController.worldState.states.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
-        cell.textLabel?.text = "Hello"
-        cell.detailTextLabel?.text = "There!"
+        cell.textLabel?.text = worldStateController.worldState.states[indexPath.row].name
+        cell.detailTextLabel?.text = worldStateController.worldState.states[indexPath.row].capital
         
         return cell
     }

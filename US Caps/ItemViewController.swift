@@ -13,4 +13,7 @@ class ItemViewController: UIViewController {
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var answerLabel: UILabel!
     @IBOutlet var progresLabel: UILabel!
+    
+    var worldStateController: WorldStateController!
+
 }
