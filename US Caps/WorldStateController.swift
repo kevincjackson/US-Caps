@@ -16,37 +16,45 @@ class WorldStateController {
         self.worldState = WorldState()
     }
     
-    func nextDisplayModeForCurrentFilter() {
-        let current = worldState.displayMode
-        worldState.displayMode = DisplayMode.next(after: current)
+    func nextDisplayModeForList() -> DisplayMode.Mode {
+        
+        // Change setting.
+        let newDisplayMode = worldState.displayMode.next
+        worldState.displayMode = newDisplayMode
+        
+        // Change for the list.
+        worldState.states.forEach {
+            let updatedState = $0.update(displayMode: newDisplayMode)
+            let id = updatedState.id
+            worldState.all[id] = updatedState
+        }
+        
+        return newDisplayMode
     }
     
     func nextDisplayModeFor(state: State) {
-        let newState = state.nextDisplayState()
-        guard let index = worldState.all.firstIndex(where: { $0.id == state.id }) else {
-            preconditionFailure("Index not found.")
-        }
-        worldState.all[index] = newState
+        let newState = state.update(displayMode: state.displayMode.next)
+        worldState.all[newState.id] = newState
     }
-    
+        
     func nextDisplayScreen() {
         switch worldState.displayScreen {
-        case .itemView:
-            worldState.displayScreen = .listView
-        case .listView:
-            worldState.displayScreen = .itemView
+        case .item:
+            worldState.displayScreen = .list
+        case .list:
+            worldState.displayScreen = .item
         }
     }
     
-    func set(index: Int) {
+    func update(index: Int) {
         worldState.index = index
     }
     
-    func set(filter: WorldState.Filter) {
+    func update(filter: WorldState.Filter) {
         worldState.filter = filter
     }
     
-    func reverseDisplay() {
-        worldState.displayReversed = !worldState.displayReversed
+    func reversePair() {
+        worldState.pairReversed = !worldState.pairReversed
     }
 }

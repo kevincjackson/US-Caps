@@ -10,28 +10,21 @@ import Foundation
 
 struct DisplayMode {
     
-    enum Mode {
+    enum Mode: String {
         case hide
         case hint
         case show
-    }
-    
-    static func next(after state: Mode) -> Mode {
         
-        var nextState: Mode
-        
-        switch state {
-        case .hide:
-            nextState = .hint
-        case .hint:
-            nextState = .show
-        case .show:
-            nextState = .hide
+        var next: Mode {
+            switch self {
+            case .hide:
+                return .hint
+            case .hint:
+                return .show
+            case .show:
+                return .hide
+            }
         }
-        
-        return nextState
     }
-
-    
 }
 

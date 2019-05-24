@@ -12,6 +12,10 @@ class ListViewController: UITableViewController {
     
     var worldStateController: WorldStateController!
 
+    func update() {
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return worldStateController.worldState.states.count
     }
@@ -19,14 +23,14 @@ class ListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let state = worldStateController.worldState.states[indexPath.row]
-        let labelText = worldStateController.worldState.displayReversed ?
+        let labelText = worldStateController.worldState.pairReversed ?
             state.capital : state.name
-        let detailText = worldStateController.worldState.displayReversed ?
+        let detailText = worldStateController.worldState.pairReversed ?
             state.name : state.capital
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
         
         cell.textLabel?.text = labelText
-        cell.detailTextLabel?.text = detailText.display(usingMode: state.displayState)
+        cell.detailTextLabel?.text = detailText.display(usingMode: state.displayMode)
         
         return cell
     }
@@ -38,7 +42,7 @@ class ListViewController: UITableViewController {
         let state = worldStateController.worldState.states[index]
         
         // Update current index
-        worldStateController.set(index: index)
+        worldStateController.update(index: index)
         
         // Change display mode
         worldStateController.nextDisplayModeFor(state: state)

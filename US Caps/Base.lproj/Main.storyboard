@@ -21,26 +21,38 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="left" translatesAutoresizingMaskIntoConstraints="NO" id="gh5-pp-HcX">
                                 <rect key="frame" x="0.0" y="111" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem title="All" id="MF3-z7-Kt3"/>
+                                    <barButtonItem title="All" id="MF3-z7-Kt3">
+                                        <connections>
+                                            <action selector="filterButtonPressed:" destination="122-HG-qtB" id="2uv-5G-rMI"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cVA-ms-7Hy"/>
-                                    <barButtonItem title="&lt;-&gt;" id="By3-5d-ktb"/>
+                                    <barButtonItem title="&lt;-&gt;" id="By3-5d-ktb">
+                                        <connections>
+                                            <action selector="reverseButtonPressed:" destination="122-HG-qtB" id="2ql-Vn-Z0w"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dAK-CE-ozI"/>
                                     <barButtonItem title="List" id="DkN-VN-Yg8">
                                         <connections>
-                                            <action selector="switchViewButtonPressed:" destination="122-HG-qtB" id="P4C-EP-F9Z"/>
+                                            <action selector="viewButtonPressed:" destination="122-HG-qtB" id="tGz-WI-DBN"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="H9l-ii-bfh"/>
-                                    <barButtonItem title="Hide" id="hks-b5-MoX"/>
+                                    <barButtonItem title="Hide" id="hks-b5-MoX">
+                                        <connections>
+                                            <action selector="displayModeButtonPressed:" destination="122-HG-qtB" id="mc0-XH-nee"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uh1-Ws-ov6" userLabel="A">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uh1-Ws-ov6" userLabel="listView">
                                 <rect key="frame" x="0.0" y="155" width="320" height="413"/>
                                 <connections>
                                     <segue destination="DCr-nN-aRD" kind="embed" identifier="listViewSegue" id="RUd-2a-QGI"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIo-nO-BDm" userLabel="B">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QIo-nO-BDm" userLabel="itemView">
                                 <rect key="frame" x="0.0" y="155" width="320" height="413"/>
                                 <connections>
                                     <segue destination="9DX-Yh-VXx" kind="embed" identifier="itemViewSegue" id="88O-Yh-8jE"/>
@@ -65,8 +77,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="US Caps" id="t0a-Ar-Har"/>
                     <connections>
-                        <outlet property="viewA" destination="uh1-Ws-ov6" id="nqe-8K-7tQ"/>
-                        <outlet property="viewB" destination="QIo-nO-BDm" id="ESp-od-YtO"/>
+                        <outlet property="displayModeButton" destination="hks-b5-MoX" id="4zy-a5-JfL"/>
+                        <outlet property="filterButton" destination="MF3-z7-Kt3" id="1lz-Ea-beh"/>
+                        <outlet property="itemViewContainer" destination="QIo-nO-BDm" id="RIt-qs-KZF"/>
+                        <outlet property="listViewContainer" destination="uh1-Ws-ov6" id="VWo-lo-e0b"/>
+                        <outlet property="viewButton" destination="DkN-VN-Yg8" id="Eqk-CX-xky"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMB-9b-HBh" userLabel="First Responder" sceneMemberID="firstResponder"/>

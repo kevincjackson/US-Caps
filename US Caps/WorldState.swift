@@ -11,10 +11,27 @@ import Foundation
 struct WorldState {
     
     var index = 0
-    var displayReversed = false
+    var pairReversed = false
     var displayMode: DisplayMode.Mode = .show
-    var displayScreen: Screen = .listView
+    var displayScreen: Screen = .list
     var filter: Filter = .all
+    var all: [State] = States.all
+    
+    enum Filter: String, CaseIterable {
+        case all
+        case midwest
+        case northeast
+        case southeast
+        case southwest
+        case west
+    }
+    
+    enum Screen {
+        case list
+        case item
+    }
+    
+    // MARK: TODO Use observer instead?
     var states: [State] {
         switch filter {
         case .all:
@@ -30,20 +47,5 @@ struct WorldState {
         case .west:
             return all.filter { $0.region == .west}
         }
-    }
-    var all = States.all
-    
-    enum Filter {
-        case all
-        case midwest
-        case northeast
-        case southeast
-        case southwest
-        case west
-    }
-    
-    enum Screen {
-        case listView
-        case itemView
     }
 }
