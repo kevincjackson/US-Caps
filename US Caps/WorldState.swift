@@ -16,8 +16,7 @@ struct WorldState {
     var displayScreen: Screen = .listView
     var filter: Filter = .all
     var states: [State] {
-        let filt: Filter = filter
-        switch filt {
+        switch filter {
         case .all:
             return all
         case .midwest:
@@ -32,7 +31,7 @@ struct WorldState {
             return all.filter { $0.region == .west}
         }
     }
-    private var all = States.all
+    var all = States.all
     
     enum Filter {
         case all

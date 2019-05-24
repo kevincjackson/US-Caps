@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A3EB8B72230982100917A13 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EB8B62230982100917A13 /* StudyViewController.swift */; };
 		0A727F9A2294A8CE00922ABB /* CompositeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A727F992294A8CE00922ABB /* CompositeViewController.swift */; };
 		0A7677642296467C008587BD /* WorldStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7677632296467C008587BD /* WorldStateController.swift */; };
 		0A767766229646DB008587BD /* WorldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A767765229646DB008587BD /* WorldState.swift */; };
@@ -24,7 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A3EB8B62230982100917A13 /* StudyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StudyViewController.swift; path = "US Caps/StudyViewController.swift"; sourceTree = SOURCE_ROOT; };
 		0A727F992294A8CE00922ABB /* CompositeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeViewController.swift; sourceTree = "<group>"; };
 		0A7677632296467C008587BD /* WorldStateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldStateController.swift; sourceTree = "<group>"; };
 		0A767765229646DB008587BD /* WorldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldState.swift; sourceTree = "<group>"; };
@@ -53,14 +51,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A76776222964247008587BD /* Temp */ = {
-			isa = PBXGroup;
-			children = (
-				0A3EB8B62230982100917A13 /* StudyViewController.swift */,
-			);
-			name = Temp;
-			sourceTree = "<group>";
-		};
 		0A7C657A22278AB100E141EA = {
 			isa = PBXGroup;
 			children = (
@@ -81,7 +71,6 @@
 		0A7C658522278AB100E141EA /* US Caps */ = {
 			isa = PBXGroup;
 			children = (
-				0A76776222964247008587BD /* Temp */,
 				0A9731DF22963C7200F51B96 /* Views */,
 				0A9731E022963C8500F51B96 /* Controllers */,
 				0A9731E122963CAB00F51B96 /* Models */,
@@ -204,7 +193,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A767766229646DB008587BD /* WorldState.swift in Sources */,
-				0A3EB8B72230982100917A13 /* StudyViewController.swift in Sources */,
 				0A7677642296467C008587BD /* WorldStateController.swift in Sources */,
 				0A76776822965A05008587BD /* Formatting.swift in Sources */,
 				0A84108222963A960037F9A9 /* ItemViewController.swift in Sources */,

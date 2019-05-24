@@ -16,7 +16,7 @@ struct DisplayMode {
         case show
     }
     
-    static func next(basedOnCurrentStateOf state: Mode) -> Mode {
+    static func next(after state: Mode) -> Mode {
         
         var nextState: Mode
         

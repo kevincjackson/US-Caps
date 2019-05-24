@@ -31,4 +31,12 @@ struct State {
         self.region = region
     }
     
+    func nextDisplayState() -> State {
+        let nextDisplayMode = DisplayMode.next(after: self.displayState)
+        var newState = State(id: self.id, name: self.name, capital: self.capital, region: self.region)
+        newState.displayState = nextDisplayMode
+        
+        return newState
+    }
+    
 }

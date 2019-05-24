@@ -18,12 +18,15 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let labelText = worldStateController.worldState.displayReversed ? worldStateController.worldState.states[indexPath.row].capital : worldStateController.worldState.states[indexPath.row].name
-        let detailText = worldStateController.worldState.displayReversed ? worldStateController.worldState.states[indexPath.row].name : worldStateController.worldState.states[indexPath.row].capital
+        let state = worldStateController.worldState.states[indexPath.row]
+        let labelText = worldStateController.worldState.displayReversed ?
+            state.capital : state.name
+        let detailText = worldStateController.worldState.displayReversed ?
+            state.name : state.capital
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
         
         cell.textLabel?.text = labelText
-        cell.detailTextLabel?.text = detailText.display(usingMode: worldStateController.worldState.displayMode)
+        cell.detailTextLabel?.text = detailText.display(usingMode: state.displayState)
         
         return cell
     }
@@ -31,12 +34,16 @@ class ListViewController: UITableViewController {
     // MARK: Implement
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let state = worldStateController.worldState.states[indexPath.row]
-        // 1) Change index - itemView needs it
-        //       studyCurrentIndex = indexPath.row
-        // 2) change display state
-        //        item.displayState = DisplayMode.next(state: item.displayState)
-       tableView.reloadData()
+        let index = indexPath.row
+        let state = worldStateController.worldState.states[index]
+        
+        // Update current index
+        worldStateController.set(index: index)
+        
+        // Change display mode
+        worldStateController.nextDisplayModeFor(state: state)
+        
+        tableView.reloadData()
     }
 }
 
