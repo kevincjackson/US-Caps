@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    func display(usingMode mode: DisplayMode.Mode) -> String {
+    func display(usingMode mode: DisplayMode) -> String {
         switch mode {
         case .show:
             return self

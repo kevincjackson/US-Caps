@@ -35,7 +35,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dAK-CE-ozI"/>
                                     <barButtonItem title="List" id="DkN-VN-Yg8">
                                         <connections>
-                                            <action selector="viewButtonPressed:" destination="122-HG-qtB" id="tGz-WI-DBN"/>
+                                            <action selector="screenButtonPressed:" destination="122-HG-qtB" id="tGz-WI-DBN"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="H9l-ii-bfh"/>
@@ -81,7 +81,7 @@
                         <outlet property="filterButton" destination="MF3-z7-Kt3" id="1lz-Ea-beh"/>
                         <outlet property="itemViewContainer" destination="QIo-nO-BDm" id="RIt-qs-KZF"/>
                         <outlet property="listViewContainer" destination="uh1-Ws-ov6" id="VWo-lo-e0b"/>
-                        <outlet property="viewButton" destination="DkN-VN-Yg8" id="Eqk-CX-xky"/>
+                        <outlet property="screenButton" destination="DkN-VN-Yg8" id="Eqk-CX-xky"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMB-9b-HBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" textLabel="xKo-ZF-lCG" detailTextLabel="57k-5p-fvD" style="IBUITableViewCellStyleValue1" id="HZ9-oK-CpE">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="listCell" textLabel="xKo-ZF-lCG" detailTextLabel="57k-5p-fvD" style="IBUITableViewCellStyleValue1" id="HZ9-oK-CpE">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HZ9-oK-CpE" id="hSS-7x-M45">
@@ -105,16 +105,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="state" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xKo-ZF-lCG">
-                                            <rect key="frame" x="16" y="12" width="38.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="10" width="43" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="capital" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="57k-5p-fvD">
-                                            <rect key="frame" x="253" y="12" width="51" height="20.5"/>
+                                            <rect key="frame" x="246" y="10" width="58" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>

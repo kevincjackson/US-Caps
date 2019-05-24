@@ -13,7 +13,7 @@ class CompositeViewController: UIViewController {
     @IBOutlet var listViewContainer: UIView!
     @IBOutlet var itemViewContainer: UIView!
     @IBOutlet var filterButton: UIBarButtonItem!
-    @IBOutlet var viewButton: UIBarButtonItem!
+    @IBOutlet var screenButton: UIBarButtonItem!
     @IBOutlet var displayModeButton: UIBarButtonItem!
     
     var worldStateController: WorldStateController!
@@ -21,10 +21,11 @@ class CompositeViewController: UIViewController {
     private var itemViewController: ItemViewController?
     
     // MARK: - View Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        listViewContainer.isHidden = false
-        itemViewContainer.isHidden = true
+        
+        setScreen()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,14 +53,9 @@ class CompositeViewController: UIViewController {
         updateViews()
     }
     
-    @IBAction func viewButtonPressed(_ sender: UIBarButtonItem) {
-        
-        // Update button
-        viewButton.title = itemViewContainer.isHidden ? "Item" : "List"
-        
-        // Update Views
-        listViewContainer.isHidden = !listViewContainer.isHidden
-        itemViewContainer.isHidden = !itemViewContainer.isHidden
+    @IBAction func screenButtonPressed(_ sender: UIBarButtonItem) {
+        worldStateController.nextDisplayScreen()
+        setScreen()
         updateViews()
     }
     
@@ -69,7 +65,6 @@ class CompositeViewController: UIViewController {
         displayModeButton.title = newDisplayMode.next.rawValue.capitalized
         updateViews()
     }
-    
     
     // MARK: - Helpers
     private func updateViews() {
@@ -101,8 +96,10 @@ class CompositeViewController: UIViewController {
         // Show it
         self.present(actionSheet, animated: true)
     }
+    
+    private func setScreen() {
+        listViewContainer.isHidden = worldStateController.worldState.screen != .list
+        itemViewContainer.isHidden = worldStateController.worldState.screen != .item
+        screenButton.title = worldStateController.worldState.screen.next.rawValue.capitalized
+    }
 }
-
-
-
-

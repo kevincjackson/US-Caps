@@ -47,8 +47,6 @@ class ListViewController: UITableViewController {
         // Change display mode
         worldStateController.nextDisplayModeFor(state: state)
         
-        tableView.reloadData()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
-
-

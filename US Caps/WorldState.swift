@@ -12,8 +12,8 @@ struct WorldState {
     
     var index = 0
     var pairReversed = false
-    var displayMode: DisplayMode.Mode = .show
-    var displayScreen: Screen = .list
+    var displayMode: DisplayMode = .show
+    var screen: Screen = .list
     var filter: Filter = .all
     var all: [State] = States.all
     
@@ -26,9 +26,18 @@ struct WorldState {
         case west
     }
     
-    enum Screen {
+    enum Screen: String, CaseIterable {
         case list
         case item
+        
+        var next: Screen {
+            switch self {
+            case .item:
+                return .list
+            case .list:
+                return .item
+            }
+        }
     }
     
     // MARK: TODO Use observer instead?

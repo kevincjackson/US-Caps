@@ -17,7 +17,7 @@ class ItemViewController: UIViewController {
     var worldStateController: WorldStateController!
 
     func update() {
-        print(#function, "TODO")
+        // TODO
     }
 }
 //@IBOutlet weak var itemView: UIView!

@@ -16,7 +16,7 @@ class WorldStateController {
         self.worldState = WorldState()
     }
     
-    func nextDisplayModeForList() -> DisplayMode.Mode {
+    func nextDisplayModeForList() -> DisplayMode {
         
         // Change setting.
         let newDisplayMode = worldState.displayMode.next
@@ -38,11 +38,11 @@ class WorldStateController {
     }
         
     func nextDisplayScreen() {
-        switch worldState.displayScreen {
+        switch worldState.screen {
         case .item:
-            worldState.displayScreen = .list
+            worldState.screen = .list
         case .list:
-            worldState.displayScreen = .item
+            worldState.screen = .item
         }
     }
     

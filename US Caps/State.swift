@@ -14,7 +14,7 @@ struct State {
     var name = ""
     var capital = ""
     var region: Region
-    var displayMode: DisplayMode.Mode = .show
+    var displayMode: DisplayMode = .show
     
     enum Region: CaseIterable {
         case midwest
@@ -31,7 +31,7 @@ struct State {
         self.region = region
     }
     
-    init(id: Int, name: String, capital: String, region: Region, displayMode: DisplayMode.Mode) {
+    init(id: Int, name: String, capital: String, region: Region, displayMode: DisplayMode) {
         self.id = id
         self.name = name
         self.capital = capital
@@ -39,7 +39,13 @@ struct State {
         self.displayMode = displayMode
     }
     
-    func update(displayMode: DisplayMode.Mode) -> State {
-        return State(id: self.id, name: self.name, capital: self.capital, region: self.region, displayMode: displayMode)
+    func update(displayMode: DisplayMode) -> State {
+        return State(
+            id: self.id,
+            name: self.name,
+            capital: self.capital,
+            region: self.region,
+            displayMode: displayMode
+        )
     }
 }

@@ -8,22 +8,19 @@
 
 import Foundation
 
-struct DisplayMode {
+enum DisplayMode: String {
+    case hide
+    case hint
+    case show
     
-    enum Mode: String {
-        case hide
-        case hint
-        case show
-        
-        var next: Mode {
-            switch self {
-            case .hide:
-                return .hint
-            case .hint:
-                return .show
-            case .show:
-                return .hide
-            }
+    var next: DisplayMode {
+        switch self {
+        case .hide:
+            return .hint
+        case .hint:
+            return .show
+        case .show:
+            return .hide
         }
     }
 }
