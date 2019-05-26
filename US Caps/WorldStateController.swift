@@ -52,6 +52,7 @@ class WorldStateController {
     
     func update(filter: WorldState.Filter) {
         worldState.filter = filter
+        update(index: 0)
     }
     
     func reversePair() {

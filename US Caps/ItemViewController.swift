@@ -17,7 +17,7 @@ class ItemViewController: UIViewController {
     
     private var pageViewController: PageViewController?
     private var numerator = 0
-    private var denominator = 0
+    private var denominator = 50
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {

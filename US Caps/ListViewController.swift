@@ -10,6 +10,10 @@ import UIKit
 
 class ListViewController: UITableViewController {
     
+    deinit {
+        print("ListView: DEINIT()")
+    }
+    
     var worldStateController: WorldStateController!
 
     func update() {

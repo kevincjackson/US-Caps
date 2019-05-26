@@ -5,6 +5,8 @@
 //  Created by Kevin Jackson on 5/22/19.
 //  Copyright © 2019 Kevin Jackson. All rights reserved.
 //
+//  Use WorldState to represent the current state of the app.
+//    Anything that modifies world state should go in the WorldStateController.
 
 import Foundation
 
@@ -40,7 +42,27 @@ struct WorldState {
         }
     }
     
-    // MARK: TODO Use observer instead?
+    // MARK: - Computed Properties
+    var nextIndex: Int {
+        let newIndex = index + 1
+        if newIndex < states.count {
+            return newIndex
+        }
+        else {
+            return 0
+        }
+    }
+    
+    var previousIndex: Int {
+        let newIndex = index - 1
+        if newIndex < 0 {
+            return states.count - 1
+        }
+        else {
+            return newIndex
+        }
+    }
+    
     var states: [State] {
         switch filter {
         case .all:

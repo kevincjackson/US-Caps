@@ -76,7 +76,7 @@ class CompositeViewController: UIViewController {
         // Create alert
         let actionSheet = UIAlertController(title: "Filter By Region", message: nil, preferredStyle: .actionSheet)
         
-        // Add handler for each region filter.
+        // Add handler for each filter.
         WorldState.Filter.allCases.forEach { stateFilter in
             actionSheet.addAction(UIAlertAction(
                 title: "\(stateFilter)".capitalized,
