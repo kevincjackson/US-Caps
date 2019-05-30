@@ -1,30 +1,76 @@
 //
-//  ListViewController.swift
+//  MainViewController.swift
 //  US Caps
 //
-//  Created by Kevin Jackson on 5/22/19.
+//  Created by Kevin Jackson on 5/21/19.
 //  Copyright © 2019 Kevin Jackson. All rights reserved.
 //
 
 import UIKit
 
-class ListViewController: UITableViewController {
+class ListViewController: UIViewController {
     
-    deinit {
-        print("ListView: DEINIT()")
-    }
+    @IBOutlet var filterButton: UIBarButtonItem!
+    @IBOutlet var screenButton: UIBarButtonItem!
+    @IBOutlet var displayModeButton: UIBarButtonItem!
+    @IBOutlet var tableView: UITableView!
     
     var worldStateController: WorldStateController!
 
-    func update() {
-        tableView.reloadData()
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @IBAction func unwindToListView(_ unwindSegue: UIStoryboardSegue) {}
+    
+    // MARK: - Target-Actions
+    @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
+        showFilterOptions(sender)
+    }
+    
+    @IBAction func reverseButtonPressed(_ sender: UIBarButtonItem) {
+        worldStateController.reversePair()
+    }
+    
+    @IBAction func screenButtonPressed(_ sender: UIBarButtonItem) {
+        worldStateController.nextDisplayScreen()
+    }
+
+    // MARK: - Helpers
+    private func showFilterOptions(_ sender: UIBarButtonItem) {
+        // Create alert
+        let actionSheet = UIAlertController(title: "Filter By Region", message: nil, preferredStyle: .actionSheet)
+        
+        // Add handler for each filter.
+        WorldState.Filter.allCases.forEach { stateFilter in
+            actionSheet.addAction(UIAlertAction(
+                title: "\(stateFilter)".capitalized,
+                style: .default,
+                handler: { [weak self] _ in
+                    self?.worldStateController.update(filter: stateFilter)
+        }))}
+        
+        // Add Cancel
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style:.cancel))
+        
+        // Handle popovers
+        actionSheet.popoverPresentationController?.barButtonItem = sender
+
+        // Show it
+        self.present(actionSheet, animated: true)
+    }
+}
+
+extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return worldStateController.worldState.states.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let state = worldStateController.worldState.states[indexPath.row]
         let labelText = worldStateController.worldState.pairReversed ?
@@ -40,7 +86,7 @@ class ListViewController: UITableViewController {
     }
     
     // MARK: Implement
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let index = indexPath.row
         let state = worldStateController.worldState.states[index]

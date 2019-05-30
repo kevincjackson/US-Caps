@@ -16,8 +16,6 @@ class ItemViewController: UIViewController {
     var worldStateController: WorldStateController!
     
     private var pageViewController: PageViewController?
-    private var numerator = 0
-    private var denominator = 50
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -25,26 +23,22 @@ class ItemViewController: UIViewController {
             let pageVC = segue.destination as! PageViewController
             pageVC.worldStateController = worldStateController
             pageViewController = pageVC
+        case "unwindToListView":
+            break
         default:
-            preconditionFailure("Unkown segue identifier.")
+            preconditionFailure("Unknown segue identifier.")
         }
     }
 
     func update() {
-        pageViewController?.update()
-        numerator = worldStateController.worldState.index + 1
-        denominator = worldStateController.worldState.states.count
-        updateProgressView()
-        updateProgressLabel()
-    }
-    
-    private func updateProgressView() {
+//        pageViewController?.update()
+
+        let numerator = worldStateController.worldState.index + 1
+        let denominator = worldStateController.worldState.states.count
         let percentage = Float(numerator) / Float(denominator)
-        progressView.progress = percentage
-    }
-    
-    private func updateProgressLabel() {
         let text = "\(numerator) / \(denominator)"
+        
         progressLabel.text = text
+        progressView.progress = percentage
     }
 }
