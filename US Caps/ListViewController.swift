@@ -11,8 +11,7 @@ import UIKit
 class ListViewController: UIViewController {
     
     @IBOutlet var filterButton: UIBarButtonItem!
-    @IBOutlet var screenButton: UIBarButtonItem!
-    @IBOutlet var displayModeButton: UIBarButtonItem!
+    @IBOutlet var listDisplayModeButton: UIBarButtonItem!
     @IBOutlet var tableView: UITableView!
     
     var worldStateController: WorldStateController!
@@ -24,7 +23,20 @@ class ListViewController: UIViewController {
         tableView.delegate = self
     }
     
-    @IBAction func unwindToListView(_ unwindSegue: UIStoryboardSegue) {}
+    override func viewWillAppear(_ animated: Bool) {
+        update()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "itemViewSegue":
+            let navVC = segue.destination as! UINavigationController
+            let itemVC = navVC.topViewController as! ItemViewController
+            itemVC.worldStateController = worldStateController
+        default:
+            preconditionFailure("Unknown segue identifier")
+        }
+    }
     
     // MARK: - Target-Actions
     @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
@@ -33,16 +45,21 @@ class ListViewController: UIViewController {
     
     @IBAction func reverseButtonPressed(_ sender: UIBarButtonItem) {
         worldStateController.reversePair()
+        update()
     }
     
-    @IBAction func screenButtonPressed(_ sender: UIBarButtonItem) {
-        worldStateController.nextDisplayScreen()
+    @IBAction func displayModeButtonPressed(_ sender: UIBarButtonItem) {
+        let newMode = worldStateController.nextDisplayModeForList()
+        listDisplayModeButton.title = newMode.next.rawValue.capitalized
+        update()
     }
+    
+    @IBAction func unwindToListView(_ unwindSegue: UIStoryboardSegue) {}
 
     // MARK: - Helpers
     private func showFilterOptions(_ sender: UIBarButtonItem) {
         // Create alert
-        let actionSheet = UIAlertController(title: "Filter By Region", message: nil, preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Study By Region", message: nil, preferredStyle: .actionSheet)
         
         // Add handler for each filter.
         WorldState.Filter.allCases.forEach { stateFilter in
@@ -51,6 +68,7 @@ class ListViewController: UIViewController {
                 style: .default,
                 handler: { [weak self] _ in
                     self?.worldStateController.update(filter: stateFilter)
+                    self?.update()
         }))}
         
         // Add Cancel
@@ -61,6 +79,12 @@ class ListViewController: UIViewController {
 
         // Show it
         self.present(actionSheet, animated: true)
+    }
+    
+    func update() {
+        filterButton.title = worldStateController.worldState.filter.rawValue.capitalized
+        listDisplayModeButton.title = worldStateController.worldState.displayMode.next.rawValue.capitalized
+        tableView.reloadData()
     }
 }
 

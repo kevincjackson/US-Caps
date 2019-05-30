@@ -8,14 +8,17 @@
 
 import UIKit
 
+protocol PageViewControllerDelegate: AnyObject {
+    
+    func indexDidUpdate()
+}
+
 class PageViewController: UIPageViewController {
     
-    enum direction {
-        case before
-        case after
-    }
-    
     var worldStateController: WorldStateController!
+    weak var pageViewControllerDelegate: PageViewControllerDelegate?
+
+    private var pendingIndex = 0
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -39,31 +42,28 @@ class PageViewController: UIPageViewController {
             completion: nil
         )
     }
-    
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("PageView: VIEW DID DISAPPEAR()")
-    }
-
 
     private func instantiatePairViewController(index: Int) -> PairViewController {
         
-        return PairViewController.instantiateFromStoryBoard(
+        let pairVC = PairViewController.instantiateFromStoryBoard(
             worldStateController: worldStateController,
             index: index
         )
+        pairVC.pairViewControllerDelegate = self
+        
+        return pairVC
     }
 }
 
 // MARK: - Page View Controller Datasource
-extension PageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+extension PageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         let previousIndex = worldStateController.worldState.previousIndex
         let pairVC = instantiatePairViewController(index: previousIndex)
-        pairVC.pageViewDirection = .before
+        pairVC.pairViewControllerDelegate = self
+
         return pairVC
     }
     
@@ -71,25 +71,33 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
         
         let nextIndex = worldStateController.worldState.nextIndex
         let pairVC = instantiatePairViewController(index: nextIndex)
-        pairVC.pageViewDirection = .after
+        pairVC.pairViewControllerDelegate = self
+
         return pairVC
+    }
+}
+
+// MARK: - Page View Controller Delegate
+extension PageViewController: UIPageViewControllerDelegate {
+
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        
+        let pairVC = pendingViewControllers[0] as! PairViewController
+        pendingIndex = pairVC.index
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
-        if completed {
-            if let pairVC = previousViewControllers.first as? PairViewController {
-                if let direction = pairVC.pageViewDirection {
-                    switch direction {
-                    case .before:
-                        let previousIndex = worldStateController.worldState.previousIndex
-                        worldStateController.update(index: previousIndex )
-                    case .after:
-                        let nextIndex = worldStateController.worldState.nextIndex
-                        worldStateController.update(index: nextIndex )
-                    }
-                }
-            }
-        }
+        worldStateController.update(index: pendingIndex)
+        pageViewControllerDelegate?.indexDidUpdate()
     }
 }
+
+// MARK: - Pair View Controller Delegate
+extension PageViewController: PairViewControllerDelegate {
+    
+    func stateDisplayModeDidUpdate(for state: State) {
+        update()
+    }
+}
+

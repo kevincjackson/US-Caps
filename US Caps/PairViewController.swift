@@ -8,24 +8,37 @@
 
 import UIKit
 
+protocol PairViewControllerDelegate: AnyObject {
+    func stateDisplayModeDidUpdate(for state: State)
+}
+
 class PairViewController: UIViewController {
     
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var answerLabel: UILabel!
     
     var worldStateController: WorldStateController!
-    var pageViewDirection: PageViewController.direction?
     var index: Int!
-    private var question: String!
-    private var answer: String!
+    weak var pairViewControllerDelegate: PairViewControllerDelegate?
+    
+    private var state: State!
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
-        question = worldStateController.worldState.states[index].name
-        answer = worldStateController.worldState.states[index].capital
-        
-        questionLabel.text = worldStateController.worldState.pairReversed ? answer : question
-        answerLabel.text = worldStateController.worldState.pairReversed ? question : answer
+        state = worldStateController.worldState.states[index]
+        let questionText = worldStateController.worldState.pairReversed ?
+            state.capital : state.name
+        let answerText = worldStateController.worldState.pairReversed ?
+            state.name : state.capital
+        let answerTextFormatted = answerText.display(usingMode: state.displayMode)
+
+        questionLabel.text = questionText
+        answerLabel.text = answerTextFormatted
+    }
+    
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        worldStateController.nextDisplayModeFor(state: state)
+        pairViewControllerDelegate?.stateDisplayModeDidUpdate(for: state)
     }
 }
 

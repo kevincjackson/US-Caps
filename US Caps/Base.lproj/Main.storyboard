@@ -24,9 +24,17 @@
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="left" translatesAutoresizingMaskIntoConstraints="NO" id="gh5-pp-HcX">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <items>
-                                            <barButtonItem title="All" id="MF3-z7-Kt3"/>
+                                            <barButtonItem title="All" id="MF3-z7-Kt3">
+                                                <connections>
+                                                    <action selector="filterButtonPressed:" destination="122-HG-qtB" id="aT8-Kl-6qZ"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="cVA-ms-7Hy"/>
-                                            <barButtonItem title="&lt;-&gt;" id="By3-5d-ktb"/>
+                                            <barButtonItem title="&lt;-&gt;" id="By3-5d-ktb">
+                                                <connections>
+                                                    <action selector="reverseButtonPressed:" destination="122-HG-qtB" id="SUv-u4-mAu"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="dAK-CE-ozI"/>
                                             <barButtonItem title="Item" id="DkN-VN-Yg8">
                                                 <connections>
@@ -34,7 +42,11 @@
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="H9l-ii-bfh"/>
-                                            <barButtonItem title="Hide" id="hks-b5-MoX"/>
+                                            <barButtonItem title="Hide" id="hks-b5-MoX">
+                                                <connections>
+                                                    <action selector="displayModeButtonPressed:" destination="122-HG-qtB" id="5kk-3F-ade"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </items>
                                     </toolbar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JAt-yc-6FJ">
@@ -81,9 +93,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="US Caps" id="t0a-Ar-Har"/>
                     <connections>
-                        <outlet property="displayModeButton" destination="hks-b5-MoX" id="4zy-a5-JfL"/>
                         <outlet property="filterButton" destination="MF3-z7-Kt3" id="1lz-Ea-beh"/>
-                        <outlet property="screenButton" destination="DkN-VN-Yg8" id="Eqk-CX-xky"/>
+                        <outlet property="listDisplayModeButton" destination="hks-b5-MoX" id="4zy-a5-JfL"/>
                         <outlet property="tableView" destination="JAt-yc-6FJ" id="2yl-xu-mUW"/>
                     </connections>
                 </viewController>
@@ -123,9 +134,17 @@
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="left" translatesAutoresizingMaskIntoConstraints="NO" id="Lpp-1D-JWa">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <items>
-                                            <barButtonItem title="All" id="NPV-Eq-xeV"/>
+                                            <barButtonItem title="All" id="NPV-Eq-xeV">
+                                                <connections>
+                                                    <action selector="filterButtonPressed:" destination="7uf-RG-VnE" id="Aea-Hf-L4x"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="7xt-RF-uM7"/>
-                                            <barButtonItem title="&lt;-&gt;" id="85v-JI-3Vv"/>
+                                            <barButtonItem title="&lt;-&gt;" id="85v-JI-3Vv">
+                                                <connections>
+                                                    <action selector="reverseButtonPressed:" destination="7uf-RG-VnE" id="fQI-FD-ZTZ"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="OQM-rm-xoj"/>
                                             <barButtonItem title="List" id="54K-pt-6NQ">
                                                 <connections>
@@ -133,7 +152,11 @@
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="ZNd-uN-fWv"/>
-                                            <barButtonItem title="Hide" id="axo-f7-KtK"/>
+                                            <barButtonItem title="Hide" id="axo-f7-KtK">
+                                                <connections>
+                                                    <action selector="displayModeButtonPressed:" destination="7uf-RG-VnE" id="SGk-oL-Jb8"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </items>
                                     </toolbar>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTI-IG-seG">
@@ -148,7 +171,7 @@
                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jT9-92-x18">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
                                             </progressView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wlz-IV-4GI">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wlz-IV-4GI" userLabel="progressLabel">
                                                 <rect key="frame" x="126.5" y="13" width="67.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
@@ -179,6 +202,12 @@
                         <viewLayoutGuide key="safeArea" id="2mZ-dy-6Nt"/>
                     </view>
                     <navigationItem key="navigationItem" title="US Caps" id="faZ-Jb-Qil"/>
+                    <connections>
+                        <outlet property="filterButton" destination="NPV-Eq-xeV" id="IP6-yZ-16e"/>
+                        <outlet property="listDisplayModeButton" destination="axo-f7-KtK" id="SAx-x9-Dh9"/>
+                        <outlet property="progressLabel" destination="Wlz-IV-4GI" id="cBz-yg-zcq"/>
+                        <outlet property="progressView" destination="jT9-92-x18" id="jko-D1-sza"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAB-Sv-2eC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YRy-KV-pfM" userLabel="Exit" sceneMemberID="exit"/>
@@ -243,6 +272,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="iPD-Us-xar" firstAttribute="trailing" secondItem="iex-ax-clj" secondAttribute="trailing" id="JPe-pU-iaf"/>
                             <constraint firstItem="iex-ax-clj" firstAttribute="top" secondItem="iPD-Us-xar" secondAttribute="top" id="bot-NO-Z5s"/>
@@ -250,6 +280,9 @@
                             <constraint firstItem="iPD-Us-xar" firstAttribute="bottom" secondItem="iex-ax-clj" secondAttribute="bottom" id="lW0-OF-q65"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iPD-Us-xar"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Wv1-Pj-VUi" appends="YES" id="uG0-ad-nmb"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="answerLabel" destination="G3D-j1-1Tb" id="Ly5-Ka-KSt"/>
@@ -257,6 +290,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsL-W3-uaS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Wv1-Pj-VUi">
+                    <connections>
+                        <action selector="viewTapped:" destination="mkJ-as-iMz" id="9P6-gp-k5g"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5634" y="268"/>
         </scene>
