@@ -8,37 +8,41 @@
 
 import UIKit
 
-protocol PairViewControllerDelegate: AnyObject {
-    func stateDisplayModeDidUpdate(for state: State)
-}
-
 class PairViewController: UIViewController {
     
-    @IBOutlet var questionLabel: UILabel!
-    @IBOutlet var answerLabel: UILabel!
+    @IBOutlet private var questionLabel: UILabel!
+    @IBOutlet private var answerLabel: UILabel!
     
     var worldStateController: WorldStateController!
     var index: Int!
-    weak var pairViewControllerDelegate: PairViewControllerDelegate?
     
-    private var state: State!
+    private var state: State {
+        return worldStateController.worldState.states[index]
+    }
+    private var questionText: String {
+        return worldStateController.worldState.pairReversed ? state.capital : state.name
+    }
+    private var answerText: String {
+        return worldStateController.worldState.pairReversed ?
+            state.name : state.capital
+    }
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
-        state = worldStateController.worldState.states[index]
-        let questionText = worldStateController.worldState.pairReversed ?
-            state.capital : state.name
-        let answerText = worldStateController.worldState.pairReversed ?
-            state.name : state.capital
-        let answerTextFormatted = answerText.display(usingMode: state.displayMode)
-
         questionLabel.text = questionText
-        answerLabel.text = answerTextFormatted
+        answerLabel.text = answerText.display(usingMode: state.displayMode)
     }
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         worldStateController.nextDisplayModeFor(state: state)
-        pairViewControllerDelegate?.stateDisplayModeDidUpdate(for: state)
+        updatePair()
+    }
+    
+    func updatePair() {
+        questionLabel.fadeTransition(0.5)
+        questionLabel.text = questionText
+        answerLabel.fadeTransition(0.5)
+        answerLabel.text = answerText.display(usingMode: state.displayMode)
     }
 }
 
@@ -49,7 +53,9 @@ extension PairViewController {
     static func instantiateFromStoryBoard(worldStateController: WorldStateController,
                                           index: Int) -> PairViewController {
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pairViewController") as! PairViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "pairViewController")
+            as! PairViewController
         
         vc.worldStateController = worldStateController
         vc.index = index

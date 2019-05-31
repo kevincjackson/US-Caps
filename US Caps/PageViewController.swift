@@ -17,8 +17,9 @@ class PageViewController: UIPageViewController {
     
     var worldStateController: WorldStateController!
     weak var pageViewControllerDelegate: PageViewControllerDelegate?
-
     private var pendingIndex = 0
+    private var currentPairViewController: PairViewController?
+    private var pendingPairViewController: PairViewController?
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -34,13 +35,18 @@ class PageViewController: UIPageViewController {
         // Setup Initial View For PageViewController
         let index = worldStateController.worldState.index
         let initialVC = instantiatePairViewController(index: index)
+        currentPairViewController = initialVC
         
         setViewControllers(
             [initialVC],
-            direction: .forward,
+            direction: .reverse,
             animated: true,
             completion: nil
         )
+    }
+    
+    func updatePair() {
+        currentPairViewController?.updatePair()
     }
 
     private func instantiatePairViewController(index: Int) -> PairViewController {
@@ -49,7 +55,6 @@ class PageViewController: UIPageViewController {
             worldStateController: worldStateController,
             index: index
         )
-        pairVC.pairViewControllerDelegate = self
         
         return pairVC
     }
@@ -62,7 +67,6 @@ extension PageViewController: UIPageViewControllerDataSource {
         
         let previousIndex = worldStateController.worldState.previousIndex
         let pairVC = instantiatePairViewController(index: previousIndex)
-        pairVC.pairViewControllerDelegate = self
 
         return pairVC
     }
@@ -71,7 +75,6 @@ extension PageViewController: UIPageViewControllerDataSource {
         
         let nextIndex = worldStateController.worldState.nextIndex
         let pairVC = instantiatePairViewController(index: nextIndex)
-        pairVC.pairViewControllerDelegate = self
 
         return pairVC
     }
@@ -84,20 +87,13 @@ extension PageViewController: UIPageViewControllerDelegate {
         
         let pairVC = pendingViewControllers[0] as! PairViewController
         pendingIndex = pairVC.index
+        pendingPairViewController = pairVC
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
         worldStateController.update(index: pendingIndex)
+        currentPairViewController = pendingPairViewController
         pageViewControllerDelegate?.indexDidUpdate()
     }
 }
-
-// MARK: - Pair View Controller Delegate
-extension PageViewController: PairViewControllerDelegate {
-    
-    func stateDisplayModeDidUpdate(for state: State) {
-        update()
-    }
-}
-

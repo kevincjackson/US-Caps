@@ -45,13 +45,13 @@ class ItemViewController: UIViewController {
     
     @IBAction func reverseButtonPressed(_ sender: UIBarButtonItem) {
         worldStateController.reversePair()
-        update()
+        pageViewController?.updatePair()
     }
     
-    @IBAction func displayModeButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func listDisplayModeButtonPressed(_ sender: UIBarButtonItem) {
         let newMode = worldStateController.nextDisplayModeForList()
         listDisplayModeButton.title = newMode.next.rawValue.capitalized
-        update()
+        pageViewController?.updatePair()
     }
     
     // MARK: - Helpers
@@ -97,7 +97,9 @@ class ItemViewController: UIViewController {
         let text = "\(numerator) / \(denominator)"
         
         progressLabel.text = text
-        progressView.progress = percentage
+        UIView.animate(withDuration: 0.4) { [weak self] in
+            self?.progressView.setProgress(percentage, animated: true)
+        }
     }
 }
 

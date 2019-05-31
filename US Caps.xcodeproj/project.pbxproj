@@ -21,6 +21,7 @@
 		0A7C659E22278EEE00E141EA /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C659D22278EEE00E141EA /* States.swift */; };
 		0A84108222963A960037F9A9 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84108122963A960037F9A9 /* ItemViewController.swift */; };
 		0AABB9C622456A45007A43C4 /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABB9C522456A45007A43C4 /* DisplayMode.swift */; };
+		0AB276F622A1942300C01369 /* View+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB276F522A1942300C01369 /* View+Animation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0A7C659D22278EEE00E141EA /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		0A84108122963A960037F9A9 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		0AABB9C522456A45007A43C4 /* DisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
+		0AB276F522A1942300C01369 /* View+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Animation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				0A7C658A22278AB100E141EA /* Main.storyboard */,
 				0A7C658F22278AB200E141EA /* LaunchScreen.storyboard */,
 				0A76776722965A05008587BD /* Formatting.swift */,
+				0AB276F522A1942300C01369 /* View+Animation.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				0A7C658722278AB100E141EA /* AppDelegate.swift in Sources */,
 				0A7C659922278BB400E141EA /* State.swift in Sources */,
 				0A7C659E22278EEE00E141EA /* States.swift in Sources */,
+				0AB276F622A1942300C01369 /* View+Animation.swift in Sources */,
 				0A727F9A2294A8CE00922ABB /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

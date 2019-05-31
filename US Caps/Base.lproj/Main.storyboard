@@ -154,7 +154,7 @@
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="ZNd-uN-fWv"/>
                                             <barButtonItem title="Hide" id="axo-f7-KtK">
                                                 <connections>
-                                                    <action selector="displayModeButtonPressed:" destination="7uf-RG-VnE" id="SGk-oL-Jb8"/>
+                                                    <action selector="listDisplayModeButtonPressed:" destination="7uf-RG-VnE" id="SGk-oL-Jb8"/>
                                                 </connections>
                                             </barButtonItem>
                                         </items>
