@@ -10,9 +10,9 @@ import UIKit
 
 class ListViewController: UIViewController {
     
-    @IBOutlet var filterButton: UIBarButtonItem!
-    @IBOutlet var listDisplayModeButton: UIBarButtonItem!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet private var filterButton: UIBarButtonItem!
+    @IBOutlet private var listDisplayModeButton: UIBarButtonItem!
+    @IBOutlet private var tableView: UITableView!
     
     var worldStateController: WorldStateController!
 
@@ -24,7 +24,7 @@ class ListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        update()
+        update(animated: false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,19 +39,19 @@ class ListViewController: UIViewController {
     }
     
     // MARK: - Target-Actions
-    @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func filterButtonPressed(_ sender: UIBarButtonItem) {
         showFilterOptions(sender)
     }
     
-    @IBAction func reverseButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func reverseButtonPressed(_ sender: UIBarButtonItem) {
         worldStateController.reversePair()
-        update()
+        update(animated: true)
     }
     
-    @IBAction func displayModeButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func displayModeButtonPressed(_ sender: UIBarButtonItem) {
         let newMode = worldStateController.nextDisplayModeForList()
         listDisplayModeButton.title = newMode.next.rawValue.capitalized
-        update()
+        update(animated: true)
     }
     
     @IBAction func unwindToListView(_ unwindSegue: UIStoryboardSegue) {}
@@ -68,7 +68,7 @@ class ListViewController: UIViewController {
                 style: .default,
                 handler: { [weak self] _ in
                     self?.worldStateController.update(filter: stateFilter)
-                    self?.update()
+                    self?.update(animated: true)
         }))}
         
         // Add Cancel
@@ -81,10 +81,26 @@ class ListViewController: UIViewController {
         self.present(actionSheet, animated: true)
     }
     
-    func update() {
+    func update(animated: Bool) {
+        
+        if animated {
+            UIView.transition(
+                with: view,
+                duration: 0.4,
+                options: .transitionCrossDissolve,
+                animations: { [unowned self] in self.update() },
+                completion: nil
+            )
+        }
+        else {
+            update()
+        }
+    }
+    
+    private func update() {
+        tableView.reloadData()
         filterButton.title = worldStateController.worldState.filter.rawValue.capitalized
         listDisplayModeButton.title = worldStateController.worldState.displayMode.next.rawValue.capitalized
-        tableView.reloadData()
     }
 }
 
