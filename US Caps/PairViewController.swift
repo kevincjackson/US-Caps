@@ -39,6 +39,7 @@ class PairViewController: UIViewController {
     }
     
     func updatePair() {
+        
         questionLabel.fadeTransition(0.5)
         questionLabel.text = questionText
         answerLabel.fadeTransition(0.5)

@@ -30,13 +30,20 @@ struct WorldState {
         
         func toString() -> String {
             switch self {
-            case .all: return "All"
-            case .midwest: return "Midwest"
-            case .northeast: return "Northeast"
-            case .southeast: return "Southeast"
-            case .southwest: return "Southwest"
-            case .west: return "West"
-            case .custom: return "Custom"
+            case .all:
+                return "All"
+            case .midwest:
+                return "Midwest"
+            case .northeast:
+                return "Northeast"
+            case .southeast:
+                return "Southeast"
+            case .southwest:
+                return "Southwest"
+            case .west:
+                return "West"
+            case .custom:
+                return "Custom"
             }
         }
     }
