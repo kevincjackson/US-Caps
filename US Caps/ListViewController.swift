@@ -104,40 +104,51 @@ class ListViewController: UIViewController {
     
     private func updateFilter(from: WorldState.Filter, to: WorldState.Filter) {
         
+        var index = 0
         var currentStates = worldStateController.worldState.states(by: from)
         let targetStates = worldStateController.worldState.states(by: to)
         
-        for state in worldStateController.worldState.all {
+        // Replace or Insert
+        while index < targetStates.count {
             
-            // Add missing state
-            if !currentStates.contains(state) && targetStates.contains(state) {
+            // Replace the state if it's not there
+            if !currentStates.contains(targetStates[index]) {
+                if index < currentStates.count {
+                    currentStates[index] = targetStates[index]
+                    worldStateController.update(toCustomFilterWith: currentStates)
+                    tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+
+                }
+                else {
+                    currentStates.append(targetStates[index])
+                    worldStateController.update(toCustomFilterWith: currentStates)
+                    tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                }
+            }
+            
+            else {
+                let matchIndex = currentStates.firstIndex(of: targetStates[index])!
+                currentStates.remove(at: matchIndex)
+                currentStates.insert(targetStates[index], at: index)
+                worldStateController.update(toCustomFilterWith: currentStates)
+                tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
                 
-                currentStates.append(state)
-                worldStateController.update(toCustomFilterWith: currentStates)
-                tableView.insertRows(at: [IndexPath(row: currentStates.count - 1, section: 0)], with: .automatic)
             }
             
-            // Delete extra state
-            else if currentStates.contains(state) && !targetStates.contains(state) {
-                let index = currentStates.firstIndex { $0.id == state.id }!
-                currentStates.remove(at: index)
-                worldStateController.update(toCustomFilterWith: currentStates)
-                tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-            }
-            
-//            // How do i insert at the right spot?
-//            else {
-//                tableView.reloadRows(at: <#T##[IndexPath]#>, with: .automatic)
-//            }
+            index += 1
         }
         
+        // Delete any extras
+        while currentStates.count > targetStates.count {
+            currentStates.remove(at: index)
+            worldStateController.update(toCustomFilterWith: currentStates)
+            tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        }
+
+
         tableView.setContentOffset(CGPoint.zero, animated: true)
         worldStateController.update(filter: to)
         filterButton.title = worldStateController.worldState.filter.toString()
-        
-        print(currentStates.count)
-        print(targetStates.count)
-        print(worldStateController.worldState.states.count)
     }
     
     func update(animated: Bool) {
