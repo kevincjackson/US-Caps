@@ -55,6 +55,11 @@ class WorldStateController {
         update(index: 0)
     }
     
+    func update(toCustomFilterWith states: [State]) {
+        worldState.filter = .custom(states)
+        update(index: 0)
+    }
+    
     func reversePair() {
         worldState.pairReversed = !worldState.pairReversed
     }

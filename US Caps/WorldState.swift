@@ -19,13 +19,26 @@ struct WorldState {
     var filter: Filter = .all
     var all: [State] = States.all
     
-    enum Filter: String, CaseIterable {
+    enum Filter {
         case all
         case midwest
         case northeast
         case southeast
         case southwest
         case west
+        case custom([State])
+        
+        func toString() -> String {
+            switch self {
+            case .all: return "All"
+            case .midwest: return "Midwest"
+            case .northeast: return "Northeast"
+            case .southeast: return "Southeast"
+            case .southwest: return "Southwest"
+            case .west: return "West"
+            case .custom: return "Custom"
+            }
+        }
     }
     
     enum Screen: String, CaseIterable {
@@ -77,6 +90,27 @@ struct WorldState {
             return all.filter { $0.region == .southwest }
         case .west:
             return all.filter { $0.region == .west}
+        case .custom(let states):
+            return states
+        }
+    }
+    
+    func states(by filter: Filter) -> [State] {
+        switch filter {
+        case .all:
+            return all
+        case .midwest:
+            return all.filter { $0.region == .midwest }
+        case .northeast:
+            return all.filter { $0.region == .northeast }
+        case .southeast:
+            return all.filter { $0.region == .southeast }
+        case .southwest:
+            return all.filter { $0.region == .southwest }
+        case .west:
+            return all.filter { $0.region == .west}
+        case .custom(let states):
+            return states
         }
     }
 }

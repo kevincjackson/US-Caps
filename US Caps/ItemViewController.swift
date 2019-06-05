@@ -60,14 +60,37 @@ class ItemViewController: UIViewController {
         let actionSheet = UIAlertController(title: "Study By Region", message: nil, preferredStyle: .actionSheet)
         
         // Add handler for each filter.
-        WorldState.Filter.allCases.forEach { stateFilter in
-            actionSheet.addAction(UIAlertAction(
-                title: "\(stateFilter)".capitalized,
-                style: .default,
-                handler: { [weak self] _ in
-                    self?.worldStateController.update(filter: stateFilter)
-                    self?.update()
-            }))}
+        actionSheet.addAction(UIAlertAction(title: "All", style: .default) { [unowned self] _ in
+            self.worldStateController.update(filter: .all)
+            self.update()
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Midwest", style: .default) { [unowned self] _ in
+            self.worldStateController.update(filter: .midwest)
+            self.update()
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Northeast", style: .default) { [unowned self] _ in
+            self.worldStateController.update(filter: .northeast)
+            self.update()
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Southeast", style: .default) { [unowned self] _ in
+            self.worldStateController.update(filter: .southeast)
+            self.update()
+
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Southwest", style: .default) { [unowned self] _ in
+            self.worldStateController.update(filter: .southwest)
+            self.update()
+
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "West", style: .default) { [unowned self] _ in
+            self.worldStateController.update(filter: .west)
+            self.update()
+        })
         
         // Add Cancel
         actionSheet.addAction(UIAlertAction(title: "Cancel", style:.cancel))
@@ -86,7 +109,7 @@ class ItemViewController: UIViewController {
     }
     
     func updateToolBar() {
-        filterButton.title = worldStateController.worldState.filter.rawValue.capitalized
+        filterButton.title = worldStateController.worldState.filter.toString()
         listDisplayModeButton.title = worldStateController.worldState.displayMode.next.rawValue.capitalized
     }
     

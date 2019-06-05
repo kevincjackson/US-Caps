@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct State {
+struct State: Equatable {
     
     var id = 0
     var name = ""

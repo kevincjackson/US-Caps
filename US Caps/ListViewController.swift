@@ -45,7 +45,7 @@ class ListViewController: UIViewController {
     
     @IBAction private func reverseButtonPressed(_ sender: UIBarButtonItem) {
         worldStateController.reversePair()
-        update(animated: true)
+        reloadRows(withAnimation: .automatic, usingInterval: 0.05)
     }
     
     @IBAction private func displayModeButtonPressed(_ sender: UIBarButtonItem) {
@@ -60,16 +60,37 @@ class ListViewController: UIViewController {
     private func showFilterOptions(_ sender: UIBarButtonItem) {
         // Create alert
         let actionSheet = UIAlertController(title: "Study By Region", message: nil, preferredStyle: .actionSheet)
-        
+
         // Add handler for each filter.
-        WorldState.Filter.allCases.forEach { stateFilter in
-            actionSheet.addAction(UIAlertAction(
-                title: "\(stateFilter)".capitalized,
-                style: .default,
-                handler: { [weak self] _ in
-                    self?.worldStateController.update(filter: stateFilter)
-                    self?.update(animated: true)
-        }))}
+        actionSheet.addAction(UIAlertAction(title: "All", style: .default) { [unowned self] _ in
+            self.updateFilter(from: self.worldStateController.worldState.filter,
+                              to: .all)
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Midwest", style: .default) { [unowned self] _ in
+            self.updateFilter(from: self.worldStateController.worldState.filter,
+                              to: .midwest)
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Northeast", style: .default) { [unowned self] _ in
+            self.updateFilter(from: self.worldStateController.worldState.filter,
+                              to: .northeast)
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Southeast", style: .default) { [unowned self] _ in
+            self.updateFilter(from: self.worldStateController.worldState.filter,
+                              to: .southeast)
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Southwest", style: .default) { [unowned self] _ in
+            self.updateFilter(from: self.worldStateController.worldState.filter,
+                              to: .southwest)
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "West", style: .default) { [unowned self] _ in
+            self.updateFilter(from: self.worldStateController.worldState.filter,
+                              to: .west)
+        })
         
         // Add Cancel
         actionSheet.addAction(UIAlertAction(title: "Cancel", style:.cancel))
@@ -81,16 +102,48 @@ class ListViewController: UIViewController {
         self.present(actionSheet, animated: true)
     }
     
+    private func updateFilter(from: WorldState.Filter, to: WorldState.Filter) {
+        
+        var currentStates = worldStateController.worldState.states(by: from)
+        let targetStates = worldStateController.worldState.states(by: to)
+        
+        for state in worldStateController.worldState.all {
+            
+            // Add missing state
+            if !currentStates.contains(state) && targetStates.contains(state) {
+                
+                currentStates.append(state)
+                worldStateController.update(toCustomFilterWith: currentStates)
+                tableView.insertRows(at: [IndexPath(row: currentStates.count - 1, section: 0)], with: .automatic)
+            }
+            
+            // Delete extra state
+            else if currentStates.contains(state) && !targetStates.contains(state) {
+                let index = currentStates.firstIndex { $0.id == state.id }!
+                currentStates.remove(at: index)
+                worldStateController.update(toCustomFilterWith: currentStates)
+                tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+            }
+            
+//            // How do i insert at the right spot?
+//            else {
+//                tableView.reloadRows(at: <#T##[IndexPath]#>, with: .automatic)
+//            }
+        }
+        
+        tableView.setContentOffset(CGPoint.zero, animated: true)
+        worldStateController.update(filter: to)
+        filterButton.title = worldStateController.worldState.filter.toString()
+        
+        print(currentStates.count)
+        print(targetStates.count)
+        print(worldStateController.worldState.states.count)
+    }
+    
     func update(animated: Bool) {
         
         if animated {
-            UIView.transition(
-                with: view,
-                duration: 0.4,
-                options: .transitionCrossDissolve,
-                animations: { [unowned self] in self.update() },
-                completion: nil
-            )
+            reloadRows(withAnimation: .automatic, usingInterval: 0.05)
         }
         else {
             update()
@@ -99,7 +152,7 @@ class ListViewController: UIViewController {
     
     private func update() {
         tableView.reloadData()
-        filterButton.title = worldStateController.worldState.filter.rawValue.capitalized
+        filterButton.title = worldStateController.worldState.filter.toString()
         listDisplayModeButton.title = worldStateController.worldState.displayMode.next.rawValue.capitalized
     }
 }
@@ -139,4 +192,18 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
+    
+    private func reloadRows(withAnimation rowAnimation: UITableView.RowAnimation, usingInterval timeInterval: TimeInterval) {
+        
+        worldStateController.worldState.states.enumerated().forEach { (arg) in
+            
+            let (index, _) = arg
+            Timer.scheduledTimer(withTimeInterval: Double(index) * timeInterval, repeats: false) {_ in
+                
+                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: rowAnimation)
+            }
+        }
+    }
 }
+
+
