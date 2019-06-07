@@ -17,6 +17,7 @@ class PageViewController: UIPageViewController {
     
     var worldStateController: WorldStateController!
     weak var pageViewControllerDelegate: PageViewControllerDelegate?
+    
     private var pendingIndex = 0
     private var currentPairViewController: PairViewController?
     private var pendingPairViewController: PairViewController?

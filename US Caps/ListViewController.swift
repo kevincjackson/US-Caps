@@ -45,12 +45,7 @@ class ListViewController: UIViewController {
     
     @IBAction private func reverseButtonPressed(_ sender: UIBarButtonItem) {
         worldStateController.reversePair()
-        if worldStateController.worldState.pairReversed == true {
-            reloadRows(withAnimation: .right, usingInterval: 0.04)
-        }
-        else {
-            reloadRows(withAnimation: .left, usingInterval: 0.04)
-        }
+        reloadRows(withAnimation: .right, usingInterval: 0.04)
     }
     
     @IBAction private func displayModeButtonPressed(_ sender: UIBarButtonItem) {
@@ -107,17 +102,17 @@ class ListViewController: UIViewController {
         self.present(actionSheet, animated: true)
     }
     
-    // Incrementally modify states for animation purposes
+    // Incrementally modify states for animation
     private func updateFilter(from: WorldState.Filter, to: WorldState.Filter) {
         
         var index = 0
         var currentStates = worldStateController.worldState.states(by: from)
         let targetStates = worldStateController.worldState.states(by: to)
         
-        // Look at at the target indexes
+        // Use or add all the target indexes first
         while index < targetStates.count {
             
-            // If the states not there
+            // If the state's not there
             if !currentStates.contains(targetStates[index]) {
                 
                 // Swap with the current if you can
@@ -142,7 +137,6 @@ class ListViewController: UIViewController {
                 currentStates.insert(targetStates[index], at: index)
                 worldStateController.update(toCustomFilterWith: currentStates)
                 tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
-                
             }
             
             index += 1
@@ -160,10 +154,12 @@ class ListViewController: UIViewController {
         filterButton.title = worldStateController.worldState.filter.toString()
     }
     
-    func update(animated: Bool) {
+    private func update(animated: Bool) {
         
         if animated {
-            reloadRows(withAnimation: .fade, usingInterval: 0.05)
+            if let indexPaths = tableView.indexPathsForVisibleRows {
+                tableView.reloadRows(at: indexPaths, with: .automatic)
+            }
         }
         else {
             update()
@@ -177,6 +173,7 @@ class ListViewController: UIViewController {
     }
 }
 
+// MARK: -
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -198,7 +195,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    // MARK: Implement
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let index = indexPath.row
@@ -215,12 +211,14 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func reloadRows(withAnimation rowAnimation: UITableView.RowAnimation, usingInterval timeInterval: TimeInterval) {
         
-        worldStateController.worldState.states.enumerated().forEach { (arg) in
-            
-            let (index, _) = arg
+        guard let indexPaths = tableView.indexPathsForVisibleRows else {
+            tableView.reloadData()
+            return
+        }
+        
+        indexPaths.enumerated().forEach { (index, indexPath) in
             Timer.scheduledTimer(withTimeInterval: Double(index) * timeInterval, repeats: false) {_ in
-                
-                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: rowAnimation)
+                self.tableView.reloadRows(at: [indexPath], with: rowAnimation)
             }
         }
     }

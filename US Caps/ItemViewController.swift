@@ -120,8 +120,8 @@ class ItemViewController: UIViewController {
         let text = "\(numerator) / \(denominator)"
         
         progressLabel.text = text
-        UIView.animate(withDuration: 0.4) { [weak self] in
-            self?.progressView.setProgress(percentage, animated: true)
+        UIView.animate(withDuration: 0.3) { [unowned self] in
+            self.progressView.setProgress(percentage, animated: true)
         }
     }
 }
