@@ -45,7 +45,7 @@ class ItemViewController: UIViewController {
     
     @IBAction func reverseButtonPressed(_ sender: UIBarButtonItem) {
         worldStateController.reversePair()
-        pageViewController?.updatePair()
+        pageViewController?.reversePair()
     }
     
     @IBAction func listDisplayModeButtonPressed(_ sender: UIBarButtonItem) {

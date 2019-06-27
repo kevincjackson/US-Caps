@@ -42,8 +42,20 @@ class PairViewController: UIViewController {
         
         questionLabel.fadeTransition(0.5)
         questionLabel.text = questionText
+        
         answerLabel.fadeTransition(0.5)
         answerLabel.text = answerText.display(usingMode: state.displayMode)
+    }
+    
+    func reversePair() {
+        
+        questionLabel.slideIn(duration: 0.2, from: .fromLeft)
+        questionLabel.text = questionText
+        
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
+            self?.answerLabel.slideIn(duration: 0.2, from: .fromRight)
+            self?.answerLabel.text = self?.answerText.display(usingMode: (self?.state.displayMode)!)
+        }
     }
 }
 

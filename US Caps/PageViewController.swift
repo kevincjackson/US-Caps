@@ -49,6 +49,10 @@ class PageViewController: UIPageViewController {
     func updatePair() {
         currentPairViewController?.updatePair()
     }
+    
+    func reversePair() {
+        currentPairViewController?.reversePair()
+    }
 
     private func instantiatePairViewController(index: Int) -> PairViewController {
         
