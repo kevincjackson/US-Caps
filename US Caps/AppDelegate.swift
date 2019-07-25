@@ -11,7 +11,7 @@ import UIKit
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var worldStateController = WorldStateController()
+    var worldStateController = WorldStateController(storageController: StorageController())
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -20,6 +20,10 @@ import UIKit
         compVC.worldStateController = worldStateController
         
         return true
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        worldStateController.save()
     }
 }
 

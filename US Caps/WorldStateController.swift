@@ -10,12 +10,20 @@ import Foundation
 
 class WorldStateController {
     
-    public private(set) var worldState: WorldState
+    private let storageController: StorageController
+    private(set) var worldState: WorldState
     
-    init() {
-        self.worldState = WorldState()
+    // MARK: - Save & Init
+    init(storageController: StorageController) {
+        self.storageController = storageController
+        self.worldState = storageController.load() ?? WorldState()
     }
     
+    func save() {
+        storageController.save(worldState: worldState)
+    }
+    
+    // MARK: Mutators / updators
     func nextDisplayModeForList() -> DisplayMode {
         
         // Change setting.
@@ -56,7 +64,8 @@ class WorldStateController {
     }
     
     func update(toCustomFilterWith states: [State]) {
-        worldState.filter = .custom(states)
+        worldState.filter = .custom
+        worldState.customStates = states
         update(index: 0)
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0AA8C722EA450200025686 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0AA8C622EA450200025686 /* StorageController.swift */; };
 		0A338C5D229992730052BAE3 /* PairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A338C5C229992730052BAE3 /* PairViewController.swift */; };
 		0A338C5F2299998F0052BAE3 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A338C5E2299998F0052BAE3 /* PageViewController.swift */; };
 		0A727F9A2294A8CE00922ABB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A727F992294A8CE00922ABB /* ListViewController.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A0AA8C622EA450200025686 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StorageController.swift; path = "../../../../../System/Volumes/Data/Users/kevin/Repositories/USCaps/US Caps/StorageController.swift"; sourceTree = "<group>"; };
 		0A338C5C229992730052BAE3 /* PairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairViewController.swift; sourceTree = "<group>"; };
 		0A338C5E2299998F0052BAE3 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		0A727F992294A8CE00922ABB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				0A7677632296467C008587BD /* WorldStateController.swift */,
+				0A0AA8C622EA450200025686 /* StorageController.swift */,
 				0A7C658622278AB100E141EA /* AppDelegate.swift */,
 			);
 			name = ModelControllers;
@@ -201,6 +204,7 @@
 				0A767766229646DB008587BD /* WorldState.swift in Sources */,
 				0A338C5D229992730052BAE3 /* PairViewController.swift in Sources */,
 				0A7677642296467C008587BD /* WorldStateController.swift in Sources */,
+				0A0AA8C722EA450200025686 /* StorageController.swift in Sources */,
 				0A338C5F2299998F0052BAE3 /* PageViewController.swift in Sources */,
 				0A76776822965A05008587BD /* Formatting.swift in Sources */,
 				0A84108222963A960037F9A9 /* ItemViewController.swift in Sources */,

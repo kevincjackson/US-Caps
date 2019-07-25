@@ -10,25 +10,26 @@
 
 import Foundation
 
-struct WorldState {
+struct WorldState: Codable {
     
     var index = 0
     var pairReversed = false
     var displayMode: DisplayMode = .show
     var screen: Screen = .list
     var filter: Filter = .all
+    var customStates: [State] = []
     var all: [State] = States.all
     
-    enum Filter {
+    enum Filter: Int, Codable, CustomStringConvertible {
         case all
         case midwest
         case northeast
         case southeast
         case southwest
         case west
-        case custom([State])
+        case custom
         
-        func toString() -> String {
+        var description: String {
             switch self {
             case .all:
                 return "All"
@@ -48,7 +49,7 @@ struct WorldState {
         }
     }
     
-    enum Screen: String, CaseIterable {
+    enum Screen: String, Codable, CaseIterable {
         case list
         case item
         
@@ -97,8 +98,8 @@ struct WorldState {
             return all.filter { $0.region == .southwest }
         case .west:
             return all.filter { $0.region == .west}
-        case .custom(let states):
-            return states
+        case .custom:
+            return customStates
         }
     }
     
@@ -116,8 +117,8 @@ struct WorldState {
             return all.filter { $0.region == .southwest }
         case .west:
             return all.filter { $0.region == .west}
-        case .custom(let states):
-            return states
+        case .custom:
+            return customStates
         }
     }
 }

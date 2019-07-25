@@ -8,10 +8,22 @@
 
 import Foundation
 
-enum DisplayMode: String {
+enum DisplayMode: Int, Codable, CustomStringConvertible {
+    
     case hide
     case hint
     case show
+    
+    var description: String {
+        switch self {
+        case .hide:
+            return "hide"
+        case .hint:
+            return "hint"
+        case .show:
+            return "show"
+        }
+    }
     
     var next: DisplayMode {
         switch self {

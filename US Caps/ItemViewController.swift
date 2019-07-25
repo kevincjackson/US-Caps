@@ -50,7 +50,7 @@ class ItemViewController: UIViewController {
     
     @IBAction func listDisplayModeButtonPressed(_ sender: UIBarButtonItem) {
         let newMode = worldStateController.nextDisplayModeForList()
-        listDisplayModeButton.title = newMode.next.rawValue.capitalized
+        listDisplayModeButton.title = newMode.next.description.capitalized
         pageViewController?.updatePair()
     }
     
@@ -109,8 +109,8 @@ class ItemViewController: UIViewController {
     }
     
     func updateToolBar() {
-        filterButton.title = worldStateController.worldState.filter.toString()
-        listDisplayModeButton.title = worldStateController.worldState.displayMode.next.rawValue.capitalized
+        filterButton.title = worldStateController.worldState.filter.description
+        listDisplayModeButton.title = worldStateController.worldState.displayMode.next.description.capitalized
     }
     
     func updateProgress() {

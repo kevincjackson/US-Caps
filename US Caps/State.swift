@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct State: Equatable {
+struct State: Codable, Equatable {
     
     var id = 0
     var name = ""
@@ -16,7 +16,8 @@ struct State: Equatable {
     var region: Region
     var displayMode: DisplayMode = .show
     
-    enum Region: CaseIterable {
+    enum Region: Int, Codable, CaseIterable {
+
         case midwest
         case northeast
         case southwest

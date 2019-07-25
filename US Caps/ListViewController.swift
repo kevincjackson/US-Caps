@@ -50,7 +50,7 @@ class ListViewController: UIViewController {
     
     @IBAction private func displayModeButtonPressed(_ sender: UIBarButtonItem) {
         let newMode = worldStateController.nextDisplayModeForList()
-        listDisplayModeButton.title = newMode.next.rawValue.capitalized
+        listDisplayModeButton.title = newMode.next.description.capitalized
         update(animated: true)
     }
     
@@ -151,7 +151,7 @@ class ListViewController: UIViewController {
 
         tableView.setContentOffset(CGPoint.zero, animated: true)
         worldStateController.update(filter: to)
-        filterButton.title = worldStateController.worldState.filter.toString()
+        filterButton.title = worldStateController.worldState.filter.description
     }
     
     private func update(animated: Bool) {
@@ -168,8 +168,8 @@ class ListViewController: UIViewController {
     
     private func update() {
         tableView.reloadData()
-        filterButton.title = worldStateController.worldState.filter.toString()
-        listDisplayModeButton.title = worldStateController.worldState.displayMode.next.rawValue.capitalized
+        filterButton.title = worldStateController.worldState.filter.description
+        listDisplayModeButton.title = worldStateController.worldState.displayMode.next.description.capitalized
     }
 }
 
