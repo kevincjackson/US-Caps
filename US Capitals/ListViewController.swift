@@ -1,6 +1,6 @@
 //
 //  MainViewController.swift
-//  US Caps
+//  US Capitals
 //
 //  Created by Kevin Jackson on 5/21/19.
 //  Copyright © 2019 Kevin Jackson. All rights reserved.

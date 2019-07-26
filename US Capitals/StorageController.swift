@@ -1,6 +1,6 @@
 //
 //  StorageController.swift
-//  US Caps
+//  US Capitals
 //
 //  Created by Kevin Jackson on 7/25/19.
 //  Copyright © 2019 Kevin Jackson. All rights reserved.

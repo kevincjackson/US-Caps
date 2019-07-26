@@ -1,6 +1,6 @@
 //
 //  answerDisplayState.swift
-//  US Caps
+//  US Capitals
 //
 //  Created by Kevin Jackson on 3/22/19.
 //  Copyright © 2019 Kevin Jackson. All rights reserved.

@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A0AA8C722EA450200025686 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0AA8C622EA450200025686 /* StorageController.swift */; };
 		0A338C5D229992730052BAE3 /* PairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A338C5C229992730052BAE3 /* PairViewController.swift */; };
 		0A338C5F2299998F0052BAE3 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A338C5E2299998F0052BAE3 /* PageViewController.swift */; };
+		0A4C4ED222EB82530026644D /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C4ED122EB82530026644D /* StorageController.swift */; };
 		0A727F9A2294A8CE00922ABB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A727F992294A8CE00922ABB /* ListViewController.swift */; };
 		0A7677642296467C008587BD /* WorldStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7677632296467C008587BD /* WorldStateController.swift */; };
 		0A767766229646DB008587BD /* WorldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A767765229646DB008587BD /* WorldState.swift */; };
@@ -26,14 +26,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A0AA8C622EA450200025686 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StorageController.swift; path = "../../../../../System/Volumes/Data/Users/kevin/Repositories/USCaps/US Caps/StorageController.swift"; sourceTree = "<group>"; };
 		0A338C5C229992730052BAE3 /* PairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairViewController.swift; sourceTree = "<group>"; };
 		0A338C5E2299998F0052BAE3 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		0A4C4ED122EB82530026644D /* StorageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		0A727F992294A8CE00922ABB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0A7677632296467C008587BD /* WorldStateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldStateController.swift; sourceTree = "<group>"; };
 		0A767765229646DB008587BD /* WorldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldState.swift; sourceTree = "<group>"; };
 		0A76776722965A05008587BD /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
-		0A7C658322278AB100E141EA /* US Caps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US Caps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A7C658322278AB100E141EA /* US Capitals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US Capitals.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7C658622278AB100E141EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A7C658B22278AB100E141EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A7C658D22278AB200E141EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		0A7C657A22278AB100E141EA = {
 			isa = PBXGroup;
 			children = (
-				0A7C658522278AB100E141EA /* US Caps */,
+				0A7C658522278AB100E141EA /* US Capitals */,
 				0A7C658D22278AB200E141EA /* Assets.xcassets */,
 				0A7C658422278AB100E141EA /* Products */,
 			);
@@ -69,12 +69,12 @@
 		0A7C658422278AB100E141EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A7C658322278AB100E141EA /* US Caps.app */,
+				0A7C658322278AB100E141EA /* US Capitals.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0A7C658522278AB100E141EA /* US Caps */ = {
+		0A7C658522278AB100E141EA /* US Capitals */ = {
 			isa = PBXGroup;
 			children = (
 				0A9731DF22963C7200F51B96 /* Views */,
@@ -83,7 +83,7 @@
 				0A9731E222963CD500F51B96 /* ModelControllers */,
 				0A7C659222278AB200E141EA /* Info.plist */,
 			);
-			path = "US Caps";
+			path = "US Capitals";
 			sourceTree = "<group>";
 		};
 		0A9731DF22963C7200F51B96 /* Views */ = {
@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				0A7677632296467C008587BD /* WorldStateController.swift */,
-				0A0AA8C622EA450200025686 /* StorageController.swift */,
+				0A4C4ED122EB82530026644D /* StorageController.swift */,
 				0A7C658622278AB100E141EA /* AppDelegate.swift */,
 			);
 			name = ModelControllers;
@@ -132,9 +132,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0A7C658222278AB100E141EA /* US Caps */ = {
+		0A7C658222278AB100E141EA /* US Capitals */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A7C659522278AB200E141EA /* Build configuration list for PBXNativeTarget "US Caps" */;
+			buildConfigurationList = 0A7C659522278AB200E141EA /* Build configuration list for PBXNativeTarget "US Capitals" */;
 			buildPhases = (
 				0A7C657F22278AB100E141EA /* Sources */,
 				0A7C658022278AB100E141EA /* Frameworks */,
@@ -144,9 +144,9 @@
 			);
 			dependencies = (
 			);
-			name = "US Caps";
+			name = "US Capitals";
 			productName = "US Caps";
-			productReference = 0A7C658322278AB100E141EA /* US Caps.app */;
+			productReference = 0A7C658322278AB100E141EA /* US Capitals.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -165,7 +165,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0A7C657E22278AB100E141EA /* Build configuration list for PBXProject "US Caps" */;
+			buildConfigurationList = 0A7C657E22278AB100E141EA /* Build configuration list for PBXProject "US Capitals" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -178,7 +178,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0A7C658222278AB100E141EA /* US Caps */,
+				0A7C658222278AB100E141EA /* US Capitals */,
 			);
 		};
 /* End PBXProject section */
@@ -204,7 +204,7 @@
 				0A767766229646DB008587BD /* WorldState.swift in Sources */,
 				0A338C5D229992730052BAE3 /* PairViewController.swift in Sources */,
 				0A7677642296467C008587BD /* WorldStateController.swift in Sources */,
-				0A0AA8C722EA450200025686 /* StorageController.swift in Sources */,
+				0A4C4ED222EB82530026644D /* StorageController.swift in Sources */,
 				0A338C5F2299998F0052BAE3 /* PageViewController.swift in Sources */,
 				0A76776822965A05008587BD /* Formatting.swift in Sources */,
 				0A84108222963A960037F9A9 /* ItemViewController.swift in Sources */,
@@ -361,12 +361,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5R5PSWDHXJ;
-				INFOPLIST_FILE = "US Caps/Info.plist";
+				INFOPLIST_FILE = "US Capitals/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kevincjackson.US-Caps";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevincjackson.US-Capitals";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -379,12 +379,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5R5PSWDHXJ;
-				INFOPLIST_FILE = "US Caps/Info.plist";
+				INFOPLIST_FILE = "US Capitals/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kevincjackson.US-Caps";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevincjackson.US-Capitals";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -394,7 +394,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0A7C657E22278AB100E141EA /* Build configuration list for PBXProject "US Caps" */ = {
+		0A7C657E22278AB100E141EA /* Build configuration list for PBXProject "US Capitals" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A7C659322278AB200E141EA /* Debug */,
@@ -403,7 +403,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A7C659522278AB200E141EA /* Build configuration list for PBXNativeTarget "US Caps" */ = {
+		0A7C659522278AB200E141EA /* Build configuration list for PBXNativeTarget "US Capitals" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A7C659622278AB200E141EA /* Debug */,

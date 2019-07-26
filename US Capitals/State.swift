@@ -1,6 +1,6 @@
 //
 //  State.swift
-//  US Caps
+//  US Capitals
 //
 //  Created by Kevin Jackson on 2/27/19.
 //  Copyright © 2019 Kevin Jackson. All rights reserved.
