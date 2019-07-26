@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--US Caps-->
+        <!--US Capitals-->
         <scene sceneID="g0X-1P-oJm">
             <objects>
                 <viewController id="122-HG-qtB" customClass="ListViewController" customModule="US_Caps" customModuleProvider="target" sceneMemberID="viewController">
@@ -91,7 +91,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RL9-RN-9G6"/>
                     </view>
-                    <navigationItem key="navigationItem" title="US Caps" id="t0a-Ar-Har"/>
+                    <navigationItem key="navigationItem" title="US Capitals" id="t0a-Ar-Har"/>
                     <connections>
                         <outlet property="filterButton" destination="MF3-z7-Kt3" id="1lz-Ea-beh"/>
                         <outlet property="listDisplayModeButton" destination="hks-b5-MoX" id="4zy-a5-JfL"/>
@@ -120,7 +120,7 @@
             </objects>
             <point key="canvasLocation" x="2179" y="-530"/>
         </scene>
-        <!--US Caps-->
+        <!--US Capitals-->
         <scene sceneID="gVU-4k-sCi">
             <objects>
                 <viewController id="7uf-RG-VnE" customClass="ItemViewController" customModule="US_Caps" customModuleProvider="target" sceneMemberID="viewController">
@@ -201,7 +201,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2mZ-dy-6Nt"/>
                     </view>
-                    <navigationItem key="navigationItem" title="US Caps" id="faZ-Jb-Qil"/>
+                    <navigationItem key="navigationItem" title="US Capitals" id="faZ-Jb-Qil"/>
                     <connections>
                         <outlet property="filterButton" destination="NPV-Eq-xeV" id="IP6-yZ-16e"/>
                         <outlet property="listDisplayModeButton" destination="axo-f7-KtK" id="SAx-x9-Dh9"/>
