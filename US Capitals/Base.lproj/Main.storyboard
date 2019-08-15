@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +14,7 @@
         <!--US Capitals-->
         <scene sceneID="g0X-1P-oJm">
             <objects>
-                <viewController id="122-HG-qtB" customClass="ListViewController" customModule="US_Caps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="122-HG-qtB" customClass="ListViewController" customModule="US_Capitals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="76C-rn-lDW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,24 +26,28 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <items>
                                             <barButtonItem title="All" id="MF3-z7-Kt3">
+                                                <color key="tintColor" name="BlueMix"/>
                                                 <connections>
                                                     <action selector="filterButtonPressed:" destination="122-HG-qtB" id="aT8-Kl-6qZ"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="cVA-ms-7Hy"/>
                                             <barButtonItem title="&lt;-&gt;" id="By3-5d-ktb">
+                                                <color key="tintColor" name="BlueMix"/>
                                                 <connections>
                                                     <action selector="reverseButtonPressed:" destination="122-HG-qtB" id="SUv-u4-mAu"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="dAK-CE-ozI"/>
                                             <barButtonItem title="Item" id="DkN-VN-Yg8">
+                                                <color key="tintColor" name="BlueMix"/>
                                                 <connections>
                                                     <segue destination="eLG-Uf-Ikr" kind="presentation" identifier="itemViewSegue" modalTransitionStyle="flipHorizontal" id="w14-PU-Q1I"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="H9l-ii-bfh"/>
                                             <barButtonItem title="Hide" id="hks-b5-MoX">
+                                                <color key="tintColor" name="BlueMix"/>
                                                 <connections>
                                                     <action selector="displayModeButtonPressed:" destination="122-HG-qtB" id="5kk-3F-ade"/>
                                                 </connections>
@@ -110,6 +115,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="bqY-I7-K9j">
                         <rect key="frame" x="0.0" y="20" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="hidesShadow" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -123,7 +131,7 @@
         <!--US Capitals-->
         <scene sceneID="gVU-4k-sCi">
             <objects>
-                <viewController id="7uf-RG-VnE" customClass="ItemViewController" customModule="US_Caps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7uf-RG-VnE" customClass="ItemViewController" customModule="US_Capitals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5wr-T6-IfR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,24 +143,28 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <items>
                                             <barButtonItem title="All" id="NPV-Eq-xeV">
+                                                <color key="tintColor" name="BlueMix"/>
                                                 <connections>
                                                     <action selector="filterButtonPressed:" destination="7uf-RG-VnE" id="Aea-Hf-L4x"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="7xt-RF-uM7"/>
                                             <barButtonItem title="&lt;-&gt;" id="85v-JI-3Vv">
+                                                <color key="tintColor" name="BlueMix"/>
                                                 <connections>
                                                     <action selector="reverseButtonPressed:" destination="7uf-RG-VnE" id="fQI-FD-ZTZ"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="OQM-rm-xoj"/>
                                             <barButtonItem title="List" id="54K-pt-6NQ">
+                                                <color key="tintColor" name="BlueMix"/>
                                                 <connections>
                                                     <segue destination="YRy-KV-pfM" kind="unwind" identifier="unwindToListView" unwindAction="unwindToListView:" id="Xby-17-alx"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="ZNd-uN-fWv"/>
                                             <barButtonItem title="Hide" id="axo-f7-KtK">
+                                                <color key="tintColor" name="BlueMix"/>
                                                 <connections>
                                                     <action selector="listDisplayModeButtonPressed:" destination="7uf-RG-VnE" id="SGk-oL-Jb8"/>
                                                 </connections>
@@ -217,7 +229,7 @@
         <!--Page View Controller-->
         <scene sceneID="20D-je-PWT">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="PuR-Lk-eTF" customClass="PageViewController" customModule="US_Caps" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="PuR-Lk-eTF" customClass="PageViewController" customModule="US_Capitals" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hu-KB-Q0U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4892" y="269"/>
@@ -225,7 +237,7 @@
         <!--Pair View Controller-->
         <scene sceneID="H0U-OY-f8v">
             <objects>
-                <viewController storyboardIdentifier="pairViewController" id="mkJ-as-iMz" customClass="PairViewController" customModule="US_Caps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pairViewController" id="mkJ-as-iMz" customClass="PairViewController" customModule="US_Capitals" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sca-8P-5Vn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,7 +271,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" name="AnswerGrey"/>
                                         <constraints>
                                             <constraint firstItem="G3D-j1-1Tb" firstAttribute="centerY" secondItem="Boa-Uq-thn" secondAttribute="centerY" id="7E2-Xc-kTy"/>
                                             <constraint firstItem="G3D-j1-1Tb" firstAttribute="centerX" secondItem="Boa-Uq-thn" secondAttribute="centerX" id="FDB-qh-k5P"/>
@@ -306,6 +318,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Cd6-pQ-FjC">
                         <rect key="frame" x="0.0" y="20" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="hidesShadow" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -317,4 +332,12 @@
             <point key="canvasLocation" x="3062" y="269"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="AnswerGrey">
+            <color red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BlueMix">
+            <color red="0.0" green="0.31764705882352939" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

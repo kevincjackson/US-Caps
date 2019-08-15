@@ -21,6 +21,7 @@ class ItemViewController: UIViewController {
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
+        
         update()
     }
     
