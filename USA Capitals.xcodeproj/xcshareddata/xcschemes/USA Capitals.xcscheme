@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A7C658222278AB100E141EA"
-               BuildableName = "US Capitals.app"
-               BlueprintName = "US Capitals"
-               ReferencedContainer = "container:US Capitals.xcodeproj">
+               BuildableName = "USA Capitals.app"
+               BlueprintName = "USA Capitals"
+               ReferencedContainer = "container:USA Capitals.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A7C658222278AB100E141EA"
-            BuildableName = "US Capitals.app"
-            BlueprintName = "US Capitals"
-            ReferencedContainer = "container:US Capitals.xcodeproj">
+            BuildableName = "USA Capitals.app"
+            BlueprintName = "USA Capitals"
+            ReferencedContainer = "container:USA Capitals.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -59,9 +59,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A7C658222278AB100E141EA"
-            BuildableName = "US Capitals.app"
-            BlueprintName = "US Capitals"
-            ReferencedContainer = "container:US Capitals.xcodeproj">
+            BuildableName = "USA Capitals.app"
+            BlueprintName = "USA Capitals"
+            ReferencedContainer = "container:USA Capitals.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -78,9 +78,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A7C658222278AB100E141EA"
-            BuildableName = "US Capitals.app"
-            BlueprintName = "US Capitals"
-            ReferencedContainer = "container:US Capitals.xcodeproj">
+            BuildableName = "USA Capitals.app"
+            BlueprintName = "USA Capitals"
+            ReferencedContainer = "container:USA Capitals.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

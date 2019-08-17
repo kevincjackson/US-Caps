@@ -33,7 +33,7 @@
 		0A7677632296467C008587BD /* WorldStateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldStateController.swift; sourceTree = "<group>"; };
 		0A767765229646DB008587BD /* WorldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldState.swift; sourceTree = "<group>"; };
 		0A76776722965A05008587BD /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
-		0A7C658322278AB100E141EA /* US Capitals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US Capitals.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A7C658322278AB100E141EA /* USA Capitals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "USA Capitals.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7C658622278AB100E141EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A7C658B22278AB100E141EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A7C658D22278AB200E141EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		0A7C657A22278AB100E141EA = {
 			isa = PBXGroup;
 			children = (
-				0A7C658522278AB100E141EA /* US Capitals */,
+				0A7C658522278AB100E141EA /* USA Capitals */,
 				0A7C658D22278AB200E141EA /* Assets.xcassets */,
 				0A7C658422278AB100E141EA /* Products */,
 			);
@@ -69,12 +69,12 @@
 		0A7C658422278AB100E141EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A7C658322278AB100E141EA /* US Capitals.app */,
+				0A7C658322278AB100E141EA /* USA Capitals.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0A7C658522278AB100E141EA /* US Capitals */ = {
+		0A7C658522278AB100E141EA /* USA Capitals */ = {
 			isa = PBXGroup;
 			children = (
 				0A9731DF22963C7200F51B96 /* Views */,
@@ -83,7 +83,7 @@
 				0A9731E222963CD500F51B96 /* ModelControllers */,
 				0A7C659222278AB200E141EA /* Info.plist */,
 			);
-			path = "US Capitals";
+			path = "USA Capitals";
 			sourceTree = "<group>";
 		};
 		0A9731DF22963C7200F51B96 /* Views */ = {
@@ -132,9 +132,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0A7C658222278AB100E141EA /* US Capitals */ = {
+		0A7C658222278AB100E141EA /* USA Capitals */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A7C659522278AB200E141EA /* Build configuration list for PBXNativeTarget "US Capitals" */;
+			buildConfigurationList = 0A7C659522278AB200E141EA /* Build configuration list for PBXNativeTarget "USA Capitals" */;
 			buildPhases = (
 				0A7C657F22278AB100E141EA /* Sources */,
 				0A7C658022278AB100E141EA /* Frameworks */,
@@ -144,9 +144,9 @@
 			);
 			dependencies = (
 			);
-			name = "US Capitals";
+			name = "USA Capitals";
 			productName = "US Caps";
-			productReference = 0A7C658322278AB100E141EA /* US Capitals.app */;
+			productReference = 0A7C658322278AB100E141EA /* USA Capitals.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -165,7 +165,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0A7C657E22278AB100E141EA /* Build configuration list for PBXProject "US Capitals" */;
+			buildConfigurationList = 0A7C657E22278AB100E141EA /* Build configuration list for PBXProject "USA Capitals" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -178,7 +178,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0A7C658222278AB100E141EA /* US Capitals */,
+				0A7C658222278AB100E141EA /* USA Capitals */,
 			);
 		};
 /* End PBXProject section */
@@ -362,13 +362,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5R5PSWDHXJ;
-				INFOPLIST_FILE = "US Capitals/Info.plist";
+				INFOPLIST_FILE = "USA Capitals/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kevincjackson.US-Capitals";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevincjackson.USA-Capitals";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -381,13 +381,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5R5PSWDHXJ;
-				INFOPLIST_FILE = "US Capitals/Info.plist";
+				INFOPLIST_FILE = "USA Capitals/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kevincjackson.US-Capitals";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevincjackson.USA-Capitals";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -397,7 +397,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0A7C657E22278AB100E141EA /* Build configuration list for PBXProject "US Capitals" */ = {
+		0A7C657E22278AB100E141EA /* Build configuration list for PBXProject "USA Capitals" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A7C659322278AB200E141EA /* Debug */,
@@ -406,7 +406,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A7C659522278AB200E141EA /* Build configuration list for PBXNativeTarget "US Capitals" */ = {
+		0A7C659522278AB200E141EA /* Build configuration list for PBXNativeTarget "USA Capitals" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A7C659622278AB200E141EA /* Debug */,
